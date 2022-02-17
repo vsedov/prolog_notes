@@ -104,6 +104,8 @@
     > of the same length such that
     > each member of Y is (N, L) when the corresponding member of X is N
     > and L is either N or 2N.
+    > Y = [(2,2),(4,4)]
+    > Y = [(2,4),(4,4)]
   *** ArbPairs
       @code prolog
       arbpairs([], []).
@@ -149,4 +151,50 @@
           print(L[0])
         @end
         The "->" acts more of an if else, without the if statement
-  *** What What does it do ?
+  *** Note
+       /Above Code does not do what it supposed to do, but is a nice touch to what you can do/
+  *** Answer for question 3
+   **** Code
+        @code prolog
+        arbpairs( [], [] ).
+        arbpairs( [h|t], [ (h,h) | y] ) :- arbpairs( t, y ).
+        arbpairs( [h|t], y ) :-
+          h1 is h * 2,
+          arbpairs( t, y1 ),
+          y = [(h,h1)|y1].
+        @end
+   **** What does it do ? /This was really annoying o_o/
+        @code prolog
+        arbpairs( [h|t], [ (h,h) | y] ) :- arbpairs( t, y ).
+        @end
+        what does the (h,h) part do in arbpairs( [h|t], [ (h,h) | y] ) :- arbpairs( t, y ).
+        (h,h) is a member of the list [(h,h)|y] which is the result of arbpairs(t,y) -> arbpairs( [], [] ). -> [] is the result of arbpairs( [], [] ).
+        this gets all the pairs, or valid pairs for one tuple -> (2,2) or (4,4) for lhs and rhs
+        @code prolog
+        arbpairs( [2,4], Y ) -> arbpairs( [4], Y1 ) -> arbpairs( [], Y2 ) -> Y = [(2,2),(4,4)]
+        Y1 = [(4,4)]
+        Y2 = []
+        Y = [(2,2),(4,4)]
+        @end
+
+        then we have our second statement
+        @code prolog
+        arbpairs( [h|t], y ) :-
+          h1 is h * 2,
+          arbpairs( t, y1 ),
+          y = [(h,h1)|y1].
+        @end
+        if we have arbpairs( [2,4,6], Y ) this statement will do ?
+        this gets all the pairs, or valid pairs for one tuple -> (2,2) or (4,4) for lhs and rhs
+        arbpairs( [2,4,6], Y ) -> arbpairs( [4,6], Y1 ) -> arbpairs( [], Y2 ) -> Y = [(2,2),(4,4)]
+        Y1 = [(4,4),(6,6)]
+
+        Due to how prolog works, we would end up getting all pairs, within a given call shown below
+        @code prolog
+        ?- arbpairs([2,4],Y).
+        Y = [(2, 2),  (4, 4)] ;
+        Y = [(2, 2),  (4, 8)] ;
+        Y = [(2, 4),  (4, 4)] ;
+        Y = [(2, 4),  (4, 8)].
+        @end
+  ** Question 4
