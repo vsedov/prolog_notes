@@ -167,9 +167,13 @@
         @code prolog
         arbpairs( [h|t], [ (h,h) | y] ) :- arbpairs( t, y ).
         @end
+
+        @code comment
         what does the (h,h) part do in arbpairs( [h|t], [ (h,h) | y] ) :- arbpairs( t, y ).
         (h,h) is a member of the list [(h,h)|y] which is the result of arbpairs(t,y) -> arbpairs( [], [] ). -> [] is the result of arbpairs( [], [] ).
         this gets all the pairs, or valid pairs for one tuple -> (2,2) or (4,4) for lhs and rhs
+        @end
+
         @code prolog
         arbpairs( [2,4], Y ) -> arbpairs( [4], Y1 ) -> arbpairs( [], Y2 ) -> Y = [(2,2),(4,4)]
         Y1 = [(4,4)]
@@ -197,4 +201,66 @@
         Y = [(2, 4),  (4, 4)] ;
         Y = [(2, 4),  (4, 8)].
         @end
-  ** Question 4
+
+ ** Question 4
+    > 4. Write a program replace wrap/2, which replaces every member X of a list with wrap(X):
+    > ?- replace_wrap([a,b,b,c], Res).
+    > Res = [wrap(a),wrap(b),wrap(b),wrap(c)]
+  *** Code
+      @code prolog
+      replace_wrap([],[]).
+      replace_wrap([H|T], [wrap(H)|T1]):- replace_wrap(T,T1).
+      @end
+  *** What does it do ?
+      So once again we are reducing down our list, with the base case being [] []
+      @code prolog
+      │ replace_wrap([a,b,c], Y)
+      │ replace_wrap([b,c], Y1)
+      │ replace_wrap([c], Y2)
+      ▼ replace_wrap([], Y3)
+      @end
+      From a top down once again, recall what our function is taking ?
+      [wrap(H)| T1]
+      @code prolog                   ▲
+      │ Y = [wrap(a),wrap(b),wrap(c)]│
+      │ Y1 = [wrap(b),wrap(c)]       │
+      │ Y2 = [wrap(c)]               │
+      ▼ Y3 = []                      │
+      @end
+
+      We return up  Such that, for each Y we will have a T1, being wrap(c) on T
+      *call replace_wrap([a,b,c], Res)*
+      @code comment
+      │  Stage_1 -> replace_wrap([a,b,c], []).
+      │  Stage_2 -> replace_wrap([a,b,c], [wrap(a)|[]].
+      │  Stage_3 -> replace_wrap([b,c], [wrap(a),wrap(b)|[]].
+      │  Stage_4 -> replace_wrap([c], [wrap(a),wrap(b),wrap(c)|[]].
+      │  Stage_5 -> replace_wrap([], [wrap(a),wrap(b),wrap(c)|[]].
+      ▼  Stage_6 -> replace_wrap([], [wrap(a),wrap(b),wrap(c)|[]].
+      @end
+
+
+
+ ** Question 5
+  *** Code
+      /At this point i dont even know what im doing that makes this work 0_0/
+      @code prolog
+      even_members([],[]).
+      even_members([H|T], [H|T1]):-
+        length([H|T], Len),
+        Len mod 2 =:= 0,
+        even_members(T, T1),
+        T1 = T1, !.
+      even_members([H|T], T1):-
+        length([H|T], Len),
+        Len mod 2 =:= 1,
+        even_members(T, T1),
+        T1 = T1, !.
+      @end
+  *** What does it do ?
+
+ ** Question 6
+  *** Code
+      @code prolog
+      @end
+  *** What does it do ?
