@@ -1,0 +1,488 @@
+@document.meta
+  title: prolog_notes
+  description:
+  authors: viv
+  categories:
+  created: 2022-01-18
+  version: 1.0.0
+@end
+
+= TOC
+
+* Syntax
+  Knowledge Base − This is one of the fundamental parts of Logic Programming. We will see in detail about the Knowledge Base, and how it helps in logic programming.
+
+  Facts, Rules and Queries − These are the building blocks of logic programming. We will get some detailed knowledge about facts and rules, and also see some kind of queries that will be used in logic programming.
+
+  Here, we will discuss about the essential building blocks of logic programming. These building blocks are Facts, Rules and the Queries.
+
+
+ ** Facts
+  We can define fact as an explicit relationship between objects, and properties these objects might have. So facts are unconditionally true in nature. Suppose we have some facts as given below −
+
+      Tom is a cat
+
+      Kunal loves to eat Pasta
+
+      Hair is black
+
+      Nawaz loves to play games
+
+      Pratyusha is lazy.
+
+ ** Key Concepts
+    - [x] variables -- begin with capital letter
+        X, Y, Fred, A_very_long_variable_name
+        anonymous variable: _
+
+    - [x] integers, reals
+
+    - [x] atoms -- begin with lower-case letter
+            x, y, fred, a_very_long_atom_name
+    - [x]   lists
+
+      @code
+      []    /* the empty list */
+      [10]
+      [10,11,12]
+        [ [squid,octopus,clam], dolphin]
+      @end
+    - [x]    structures
+      point(10,30)
+      line(point(10,30),point(99,100))
+ ** Simple Queries
+      @code prolog
+      A = [4,5,6], B=[3|A].   /* then B =[3,4,5,6]  */
+      A = [4,5,6], B=[3,A].   /* then B =[3,[4,5,6]]  */
+      @end
+    This list notation is just shorthand for the set structures where a call is being made
+
+ ** Unification / Clarification
+    1. Two terms unify if they are identical or they are related towards each to each other : refer to{:prolog_notes:*** Unification}[Unification] for further notes.
+    2. If both the variables in the term can be instantiated to the objects such that the terms are identical
+
+  *** Unification Examples
+      1. fred unifies with fred
+      2. X unifies with fred (by substituting fred for X)
+      3. X unifies with Y (by substituting Y for X, or substituting 3 for X and 3 for Y)
+      4. point(A,10) unifies with point(B,C)
+      5. clam(X,X) unifies with clam(Y,3)
+
+      6. When Prolog unifies two terms, it picks the most general unification
+      point(A,A) unifies with point(B,C) by substituting A for B and A for C
+
+ ** Declarative Meaning Vs Procedural Meaning
+    */_Declarative: What_/*
+
+
+    */_Procedural: How_/*
+
+  *** Declarative Meaning
+
+      Something like the following would be considered a declarative :
+      @code prolog
+      p :- a,b,c,.
+      @end
+
+      Means if a and b and c are true, then that would logically imply P - > Such that P will be true
+
+   **** Goal
+        The Goal is Satisfiable if the clause follows the following reqs
+
+        - [x] There is a clause instance
+        - [x] The head of the clause is identical
+        - [x] All the goals in the body are sound
+
+   **** Dec Meaning part 2
+        In the declarative meaning of a Prolog program, the order of the clauses, and the order of the goals in the body of a rule, doesn't matter.
+        @code prolog
+        low_life(X) :- likes(X,cheap_cigars).
+        @end
+        means for every X, if likes(X,cheap_cigars) is true then low_life(X) is true
+
+        */variables in goals are EXISTENTIALLY QUANTIFIED/*
+
+        @code prolog
+        likes(fred,X).
+        @end
+ ** Procedural Meanings
+    Given a list of Goals through G1 ... Gn
+
+    they must satisfy the following conditions
+
+    1. If the list is empty terminate with success
+    2. Otherwise look for the first clause in the program whose head matches G1
+    3. If None terminate with failure .
+    4. If yes replace g1 with the goals in the body of the clause making the same unification that were done to make G1 match the head.
+
+    | Notice that for the procedural meaning, the order of clauses in the program, and the order of goals in the body of a rule, affects the execution of the program.
+
+ ** Infinite Loops
+    @code prolog
+    /* Definition of append (name changed to myappend to avoid colliding with
+      built-in append rule) */
+    myappend([],Ys,Ys).
+    myappend([X|Xs],Ys,[X|Zs]) :- myappend(Xs,Ys,Zs).
+
+    /* SAMPLE GOALS */
+    | ?- myappend([1,2],[3,4,5],Q).
+
+    | ?- myappend([1,2],M,[1,2,3,4,5,6]).
+
+    | ?- myappend(A,B,[1,2,3]).
+
+    | ?- myappend(A,B,C).
+
+    /* DEFINITION OF MEMBER */
+    mymember(X,[X|_]).
+    mymember(X,[_|Ys]) :- mymember(X,Ys).
+
+
+    /* SAMPLE GOALS */
+    | ?- mymember(3,[1,2,3,4]).
+
+    | ?- mymember(X,[1,2,3,4]).
+
+    | ?- mymember(1,X).
+    @end
+
+* Commands and control Syntax
+ ** Arithmetic
+
+ ** Cut
+ ** Negation
+ ** Assert retract
+ ** Evaluable predicate
+
+
+* How to run prolog file
+@code prolog
+  gplc prolog_file.pl
+@end
+In python this would look like this
+
+@code python
+def a():
+  b --
+  c --
+@end
+
+Here you know that prolog would execute b and then c  - then a would be computed properly
+
+* Logic
+
+  @code prolog
+
+  a :- b, c
+
+  @end
+  A <- B and C
+  only if B and C is true
+  *** Order of things here would not matter that much
+
+* Procedure calls
+
+  Example Queries :
+  @code prolog
+  ?- a,d,e
+  ?- likes(chris,X)
+  ?- flight(gatwick,z), in_poland(Z),flight(Z,china)
+  @end
+
+* Values
+Prolog behaves like python, you dont have to tell the items, until they are running,
+it is not static
+
+@code prolog
+?- likes(chris,X)
+@end
+
+Can you finupdate_keymapsd an  X where chris likes x ?
+
+
+- Query
+  - ?- a,d,e
+  - ?- b,c,d,e
+  *** a:- b,c
+    Match with head, so a - would have to be linked with b and c
+
+  {* High level program - not much about how to do it}[High level program - not much about how to do it]
+
+Nice would have to be above the likes statement, to allow it to be true
+
+* High level program - not much about how to do it
+ Relies on first order logic *Declarative language*
+
+| Not mainly used that often now a days
+
+* How to run Prolog file
+@code prolog
+  gplc prolog_file.pl
+  swipl file_name
+@end
+there are two ways that this can be run .
+
+ ** Example code
+      @code prolog
+      a:- b,c
+      @end
+
+      In python this would look like this
+
+      @code python
+      def a():
+        b --
+        c --
+      @end
+
+      Here you know that prolog would execute b and then c  - then a would be computed properly
+
+* Logic
+
+  @code prolog
+
+  a :- b, c
+
+  @end
+  A <- B and C
+  only if B and C is true
+  *** Order of things here would not matter that much
+
+* Procedure calls
+
+  Example Queries :
+  @code prolog
+  ?- a,d,e
+  ?- likes(chris,X)
+  ?- flight(gatwick,z), in_poland(Z),flight(Z,china)
+  @end
+
+* Values
+Prolog behaves like python, you dont have to tell the items, until they are running,
+it is not static
+
+@code prolog
+?- likes(chris,X)
+@end
+
+Can you finupdate_keymapsd an  X where chris likes x ?
+
+
+- Query
+  - ?- a,d,e
+  - ?- b,c,d,e
+  *** a:- b,c
+    Match with head, so a - would have to be linked with b and c
+
+  {* High level program - not much about how to do it}[High level program - not much about how to do it]
+
+Nice would have to be above the likes statement, to allow it to be true
+
+
+* How does prolog structure its own code base ?
+@image
+  {file:///home/viv/GitHub/Personal_Learning/ThisYear/AI/week_1/imgs/image1.png}[Active branch table ]
+@end
+
+Prolog works in the Basis that atleast one of the values would hold true. refer to the code base below
+@code prolog
+happy(chris).
+likes(chris, bob) :- likes(bob, beer).
+likes(chris, bob) :- likes(bob, chris).
+
+% likes(chris, beer).
+likes(bob, chris).
+@end
+
+In this case, atleast one should hold true
+
+
+* Variable programs
+ In prolog you can hold a variable that would hold true, such that its like a filter of sorts, you are searching for a value later on the line to find something through a variable
+
+
+ ** Variable
+ *Variables are capitalised characters i.e /X/ would be a variable*
+
+ Look at the following code
+ @code prolog
+  happy(chris).
+  likes(chris, bob) :- likes(bob, beer).
+  likes(chris, bob) :- likes(bob, chris).
+
+  % likes(chris, beer).
+  likes(bob, chris).
+ @end
+ -- In the code above we have a few statements that hold true, in the instance that we know that bob likes chris
+
+ So what if i wanted to find atleast one person that would like bob ?
+ @code prolog
+  | ?- likes(X, chris).
+
+  X = bob
+
+  yes
+  | ?-
+
+ @end
+
+ with the above code what i am saying is _Return atleast one person that likes Chris_ in this case this would be bob.
+
+  *** Variable program, qualification
+      @code prolog
+      likes(chris,X) :- likes(X, chris).
+      @end
+       is the same as saying the following
+
+      >> /For all X/ (Likes(Chris, X) <-> like(X, Chris))
+      In this case both would have to imply each other, for this statement to hold true
+
+
+ ** Query and Goal  and Program it self
+
+  *** Query / Goal
+      @code prolog
+      likes(U, chris).
+      @end
+
+  *** Program
+      @code prolog
+      likes(bob, Y) :- understands(bob, Y).
+      @end
+
+    In the example above, we can state that *likes(U, chris)* and *likes(bob, Y)* can be made identical - you can forcefully match this actually
+
+  *** Unification
+      @code prolog
+
+      likes(U, chris).
+      likes(bob, Y) :- understands(bob, Y).
+
+      understands(bob, chris).
+      @end
+
+      The following commands would hold true due to this :
+      @code prolog
+      likes(X, chris) :- likes(chris, X).
+      likes(chris,bob).
+      @end
+      So with the first example
+
+      We have some variable U that likes Chris  - we can define that later on
+      Bob likes Y, and in this :
+        bob Likes Y if Bob can understand Y
+
+      Such that if bob and Chris can understand each other, Chris = Y and bob = U for likes
+      what you would have is implicit declaration of data
+
+      By binding Bob->U and Y->Chris, through one main statement call
+
+      Such that for something to be true, something else must hold true as well
+
+* Work Sheet Week  1 - Understanding the basics
+ ** Writing
+    @code prolog
+    write("hello world").
+    @end
+    make sure there are no spaces between write and the opening bracket.
+ ** Halting
+    @code prolog
+    halt
+    @end
+    or just type in /<ctrl>D/
+ ** Simple.pl
+    @code prolog
+
+    check_number( 0 ).
+    check_number( N ) :-
+        N > 0,
+        N1 is N - 2,
+        check_number( N1 ).
+    check_number( N ) :-
+        N < 0,
+        N1 is N + 2,
+        check_number( N1 ).
+    @end
+
+  *** Query
+      @code prolog
+      check_number( 0 ).
+      check_number( 100 ).
+      check_number( 531 ).
+      @end
+
+   **** The error
+        It works, but when you hit 531 ? you get an overflow
+        @code comment
+        check_number(531).
+
+        Fatal Error: local stack overflow (size: 16384 Kb, reached: 16383 Kb, environment variable used: LOCALSZ)
+
+        @end
+
+   **** Why do you get this error ?
+        if you refer to the code there are base statements that it would have to follow
+        @code prolog
+        check_number(0).
+        check_number(N).
+        @end
+
+        The reason for this error, is that there is not enough terminating cases for odd numbers ?
+        @code prolog
+        checkk_number(1).
+        @end
+        By adding that, the program would have to check 0 and 1 as the base cases to ensure that they are true or false in the instance
+
+  *** What does this program do
+   **** Stage even
+        Check_numbers calls it self where the following has to be true
+        - [x] N is greater than 0
+        - [x] N1 = N-2
+        - [x] call back on it self N1
+
+   **** Stage odd
+        - [x] Is number less than 0
+        - [x] N1 is N + 2
+        - [x]  Call check_number on N1
+
+  *** General Syntax information /Important/
+
+      @code python
+      x = 5
+      print(x)
+      @end
+
+      is the same as
+
+      @code prolog
+      x is 5
+      @end
+
+      In Prolog the Is command allows statement to be give
+
+* Trading Example : selling producing and needing
+
+  @code prolog
+  sells(usa, grain, mexico).
+  sells(S, P, R) :- produces(S, P), needs(R, P).
+
+  produces(oman, oil).
+  produces(iraq, oil).
+  produces(japan, cameras).
+  produces(germany, pork).
+
+  produces(france, wine).
+
+  needs(britain, cars).
+  needs(japan, cars).
+  needs(france, pork).
+  needs(_, cameras). % _ is a variable meaning everyone produces cameras
+  needs(C, oil) :- needs(C, cars).
+  @end
+
+
+
+
+* Reference
+ ** Main
+    1. [main]("https://courses.cs.washington.edu/courses/cse341/12au/prolog/basics.html")

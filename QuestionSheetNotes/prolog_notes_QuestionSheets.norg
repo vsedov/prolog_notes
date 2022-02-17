@@ -1,0 +1,33 @@
+@document.meta
+  title: prolog_notes_QuestionSheets
+  description:
+  authors: viv
+  categories:
+  created: 2022-02-17
+  version: 0.0.11
+@end
+
+* Week 4 and 5 Exercise 3 :
+
+ ** Question 1
+  *** ALl Members
+      @code prolog
+      all_members([],_). % if list is empty, then all members are in list
+      all_members([H|T],L):-
+        member(H,L), all_members(T,L). % if head is in list, then check the rest of the list
+      @end
+  *** What does it do
+      We split the Head and tail, and have another List L, that is out Unifier
+      We check if the Head of the List is in L, and then we recurse over all_members
+ ** Question 2
+  *** Get Pairs of Values with a List and a unifier : pairs(+X, ?Y)
+      @code prolog
+      pairs([], []).
+      pairs([H|T], Y) :-
+        pairs(T, Y1),
+        H1 is H - 1,
+        H2 is H + 1,
+        Y = [(H1, H2)|Y1].
+      @end
+  *** What does it do ?
+ ** Question 3

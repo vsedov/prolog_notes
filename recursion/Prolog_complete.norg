@@ -1,0 +1,86 @@
+@document.meta
+  title: Prolog_complete
+  description:
+  authors: viv
+  categories:
+  created: 2022-01-31
+  version: 0.0.10
+@end
+
+
+* Prolog Recursion
+
+  Fibonacci Sequence Example
+  @code prolog
+    fib(N,R):- (N,R):-
+    N1 is N-1,
+    N2 is N-2,
+    fib(N1, R1), fib(N1,R2),
+    R is R1 + R2.
+  @end
+  Recursion - the order is very important such that if your base case and recursive case is done in the wrong order, this would fail:
+
+  Think about what would happen if you switch out your cases, such that you would have the following :
+  @code prolog
+  fib(1,1).
+  fib(0,0).
+
+  % If you have Fib(10,X)
+  % x gets unified with Y here : means it will look for a vlaue that will meet our recursive
+  % criteria
+  fib(N,R):-
+    N1 is N-1,
+    N2 is N-2,
+    fib(N1, R1), fib(N1,R2),
+    R is R1 + R2.
+  @end
+
+  This is a linear conversion - so that you have the arguments that you are parsing down, but your main order does matter.
+  So you define a value R1, that gets parsed down, that R1 is matched, consider how values get parsed down over a certain period of time .
+  As soon as the values hit zero, at that moment it would return the value R. Or the value that we are defining.
+
+ ** What would happen if you switch the base case around.
+    | Unsure Answer :
+    > Such that when you run something like Fib(10,X) - it would check if it is 1 . 1 before it can be 0 0, so you might return 0 ?
+    The whole thing crashes, and your entire stack, would crash, stack limit is too high
+ ** So why does it break ?
+    if you remove teh base cases, you end up going in a massive loop, you always have to make sure that you know there is some base case that the program can stop on.
+
+ ** Factorials:
+    @code prolog
+      fact(0,1).
+      fact(N,F):-
+        N>0,
+        N1 is N-1,
+        fact(N1, R1),
+        F is R1 * N.
+    @end
+    There are things that you should check when you are making a recursive statement, in that case you should know
+
+    @code prolog
+    %Public Function or predicate function
+    fact_it(N,F):-
+      fact_it(0, N, 1, F).
+
+    %Base case
+    fact_it(N,N,F,F).
+    %N=N and F=F
+    % Result variable does not need to have the correct value but it gets corrected
+
+    %recursive case fist
+    fact_it(I,N,T,F):-
+      I < N,
+      I1 is I + 1 ,
+      T1 is T * I1, % current value of our total and multiply it each step going onwards
+      fact_it(I1, N,T1,F).
+  @end
+
+  *** Running
+      - 3,X
+      - 0, 3, 1, F % with X = F
+      - 1 3 1 F' % With F = F
+
+
+* Cool Syntax
+  A semi colon | ; | allows you to backtrack your previous query that was resulted .
+  What that means is that you can ask prolog to find another point for it to work towards, or bassicly say hey i dont like this value, go find me another one .
