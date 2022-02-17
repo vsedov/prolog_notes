@@ -10,6 +10,8 @@
 * Week 4 and 5 Exercise 3 :
 
  ** Question 1
+    > Write a program all members( +X, +Y ) which checks whether all members of a given list
+    > X are members of another given list Y
   *** ALl Members
       @code prolog
       all_members([],_). % if list is empty, then all members are in list
@@ -20,6 +22,10 @@
       We split the Head and tail, and have another List L, that is out Unifier
       We check if the Head of the List is in L, and then we recurse over all_members
  ** Question 2
+    > 2. Write a program pairs( +X, ?Y ) which, given a list X of numbers, constructs a list Y of
+    > the same length such that
+    > each member of Y is (U, V) when the corresponding member of X is N
+    > and U is N-1 and V is N+1.
   *** Get Pairs of Values with a List and a unifier : pairs(+X, ?Y)
       @code prolog
       pairs([], []).
@@ -30,4 +36,117 @@
         Y = [(H1, H2)|Y1].
       @end
   *** What does it do ?
+      /This was annoyling confusing/
+      From a recursive standpoint it does the following procedure
+
+      @code prolog
+      initial_call -> pairs([1,2,3,4,5], Y)
+      Rec_1 -> pairs([2,3,4,5], Y1)
+      Rec_2 -> pairs([3,4,5], Y2)
+      Rec_3 -> pairs([4,5], Y3)
+      Rec_4 -> pairs([5], Y4)
+      Rec_5 -> pairs([], Y5)
+
+      ▲ Y = [(0,1),(1,2),(2,3),(3,4),(4,5)]
+      │ Y1 = [(1,3),(2,4),(3,5)]
+      │ Y2 = [(2,4),(3,5)]
+      │ Y3 = [(3,5)]
+      │ Y4 = [(4,5)]
+      │ Y5 = []
+      │ Y = [(0,1),(1,2),(2,3),(3,4),(4,5)]
+      @end
+
+      From Initial call, it will first cut down the list due to its initial recurisive call .
+      within each recursion like Rec_1 or Rec_2 , you we define a New Y in theory, think of y1 y2 ... as a new Y such that in this case we have /*5 instances*/ of Y
+
+      Here are the following values that are returned
+      @code prolog
+      ▲ REC 1 = (1,3)
+      │ REC 2 = (2,4)
+      │ REC 3 = (3,5)
+      │ REC 4 = (4,5)
+      │ REC 5 = []
+      │ Y1 = [(1,3),(2,4),(3,5)]
+      @end
+
+      Rec_5 will return a empty list - Base case has been met
+      Rec_4 will then create H1 and H2
+            - H1 = 4
+            - H2 = 5
+            we then call that on Y1 defined within the pairs so our Y5 pretty much that was called, in this case it is an empty List so no we dont combine we just combine "[(4,5),[]]" atm
+
+      Rec_3 Will Create
+            - H1 = 3
+            - H2 = 5
+            /Why is H2 5?/
+            Well H2 is part of the head right ? our returned value is actualy 4, from the previous recursive call . Due to Y3 being returned.
+
+      ... Repeat
+      Final Step where it all gets added up
+      Each pair will then be pushed correctly, we negate the empty list and we return our values that was computed
+
+      Y = [(0,1),(1,2),(2,3),(3,4),(4,5)]
+      -------------------------------------------------------------
+
+    *** how do you get (0,1) and (1,2) and (2,3) and (3,4) and (4,5) ?
+        - Y4 adds (4,5) to the list
+        - Y3  takes 3 from Y4 and adds it to the list becoming 3,4
+        - Y2 takes 2 from Y3 and adds it to the list becoming 2,3
+        - Y1 takes 1 from Y2 and adds it to the list becoming 1,2
+        - Initial Y takes 0 from Y1 and adds it to the list becoming 0,1
+      @code
+      Y5 = [] -> Y4 = [(4,5)] -> Y3 = [(3,5)] -> Y2 = [(2,4),(3,5)] -> Y1 = [(1,3),(2,4),(3,5)] -> Y = [(0,1),(1,2),(2,3),(3,4),(4,5)]
+      @end
+      Which Gives us Y once it is added to the end
+
  ** Question 3
+    > 3. Write a program arbpairs( +X, ?Y ) which, given a list X of numbers, constructs a list Y
+    > of the same length such that
+    > each member of Y is (N, L) when the corresponding member of X is N
+    > and L is either N or 2N.
+  *** ArbPairs
+      @code prolog
+      arbpairs([], []).
+      arbpairs([H|T], Y):-
+        arbpairs(T,Y1),
+        N is H,
+        (N mod 2 =:= 0 -> L is N; L is 2*N),
+        Y = [(N,L)|Y1].
+      @end
+
+  *** New Tools learnt
+   **** Comparison operator
+        @code prolog
+        N mod 2 =:= 0
+        @end
+        this is a comparision operator, that would check if two values are equal
+        in this case we are checking the command N Mod 2 == 0
+        ----
+        Pythonicly It would be like
+        @code python
+        N = 10
+        return N % 2 == 0
+        @end
+        Returning True similar principle above
+
+   **** if else statement (sorta)
+        @code prolog
+        (N mod 2 =:= 0 -> L is N; L is 2*N),
+        @end
+        Using the Comparision Operator - you then can say the following
+        if N mod 2 is true then L is N OR L is 2 * N
+        ----
+        Pythonicly we can say
+        @code python
+        if __name__ == "__main__":
+          import random
+
+          N = 10
+          L = 0
+          options = [N, 2 * N]
+          if N % 2 == 0:
+              L = sorted(options, key=lambda x: random.random())
+          print(L[0])
+        @end
+        The "->" acts more of an if else, without the if statement
+  *** What What does it do ?
