@@ -3,6 +3,77 @@
   description:
   authors: viv
   categories:
-  created: 2022-02-27
+  created: 2022-03-03
   version: 0.0.11
 @end
+
+* Chapter 1 : Introduction  {Lecture_1}
+
+ ** Why do we need search
+      A     B
+      ┌─────┐
+      ├┬─┐  │
+      ││ │  │
+      └┴─┴──┘C
+    D E  F
+
+    - Consider each letter a node and a path
+    - Each path has some sort of weighiting that allows us to go through and caculate the following items
+
+    - [x] Shortest Path
+    - [x] Quickest Path
+    - [x] Least Expensive Path
+
+    We use this as a measure of how good out algorithm is presenting some given search over a period of time
+
+    - What does this mean ?
+
+    Most cases In /AI/ We rely on teh factor of searching a given value, or a set of given values where we have a start node
+    and where we want to get to, at the very end, what is the main goal to be aiming for.
+
+    We use graphs and trees to allow us to search in a certain way to provide and give that information.
+
+  *** Why ?
+      - We want to convert a real world problem into a computational perspective - such that their are weightings bias etc , to uphold for changes.
+      - Different search algorithms are used , to allow us to search and find the most optimal path to a given node.
+
+    /Book/
+    @code comment
+    Look at Notebook for diagram iliustrations on the Vaccume work { Need notes on the given diagram }
+    @end
+
+
+  *** Example Diagram
+        a  b  c
+      ┌──       ──┐
+    a │  7  2  4  │   - Examples like this, require a informed search
+    b │  5  _  6  │
+    c │  8  3  1  │
+      └──       ──┘
+     What this tells us is that say we have some start state, consider 7, where the node from a to a is 7
+     we can make a table to describe the best and most optimal way of getting to the end solutino of a given state. p.,use matrix,
+
+   **** How do you know what search you need to use ?
+          Most cases when it comes to what the program does, or what the problem is, if we have a graph from different notes, converting it into a matrix
+          and using A* algorithm would be more ideal, but in some sense you can conver that into a tree or some some other algorithm .
+
+          - What is the problem ?
+          - Why are we doing it ?
+          - What is the end goal for this?
+          - What bias are we working on ?
+
+ ** Problem Types
+  *** Types
+      _____
+   **** Deterministic : ,Fully Observable => Single-State-problem,
+    ***** What is Single State problem ?
+
+          With Single State problems - You can do exact predictions on a given problem.
+
+          1. ,State:, - the state is known exactly after any sequence of action
+
+          2.,accessibility:, - of the world all essential information can be obtained through sensors [ so it knows what path it has taken ?  ]
+
+          3. ,Consequences:, - When the program / action does something, it knows what will happen - or the consequences of what may occour.
+
+          4. ,Goal:, - For each known initial state, there needs to be some *goal* state that is reachible, and /guaranteed to be reachable/ Through Some set of Sequiences.
