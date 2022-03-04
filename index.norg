@@ -7,6 +7,9 @@
   version: 0.0.11
 @end
 
+* Developers Note
+ 1. Main Focus is Single State problems 
+
 
 * Chapter 1 : Introduction  {Lecture_1}
 
@@ -261,6 +264,18 @@
 
     - when you abstract a given state: You have a set of real paths are are a solution in the real world - each
     abstracted action should be easier than the original problem . 
+ 
+ ** ^Sumary^
+    - Real world problem in a search domain is the basis of how searches work
+
+    -- ,/Abstracting away real world details could be the following/,
+
+    --- Set of states
+    --- Initial State 
+    --- Set of actions that is being taken 
+    --- Transition Model 
+    --- Goal Test
+    --- Path Cost Function
 
     
 
