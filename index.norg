@@ -173,18 +173,7 @@
          going, it is based on what you have right now, and the learning epxierence. Again it comes down to ok, there is something here oo what can it do ... and learn from its own expierence, something similar to a self learning robot or something where it doesnt not know where to start.
 
 
- ** Vacume World - Single State
-
-    @math
-
-    1. [Dirt and hoover | Dirt]             2 [Dirt | Hoover and Dirt]
-
-    3. [Dirt and hoover | _]                4 [Dirt | Hoover]
-
-    5. [hoover| Dirt]                       6 [_ |Dirt and Hoover]
-
-    7 . [hoover | _]                        8 [_ | Hoover]
-
+ ** Vacume World
+    @code comment
+    Look in book for examples - as it is better described there page 44
     @end
-
-    - Let you initial State be 5
