@@ -177,3 +177,92 @@
     @code comment
     Look in book for examples - as it is better described there page 44
     @end
+
+
+ ** Problems solved by ^classical^ Search Methods
+
+    - Knowing your enviorment -
+
+    1. Observable ?
+    -- Current state is known ?
+    2. Discrete ?
+    -- From each state is there a finetly many states that you can jump to ? Executing states ? State wont change unless you make a move -> State would change .
+    3. Deterministic ?
+    -- Each action has to have some action Classical Search has one action.
+    4. Known?
+    -- Consequences of one state can lead to the next: and such that you know what is going on in classical  search
+    -- Possible actions of each action / state would lead to another Node - is this a vaired state ? does action A -> a known state or unknown state ?
+
+
+ ** Single State Formulation
+
+    Single state formulation id described from the followings defined items .
+
+
+  *** Set of states :
+      @math
+      { At(a), At(b), At(c), ... At(z) }
+      @end
+
+  *** Initial State
+      @math
+        > At(a)
+      @end
+
+  *** Set of actions ? 
+      @math
+      {DriveTo(d)}
+      @end
+
+  *** Transition Model - a successor function
+      @math
+      Result : {Set of States} States x Action -> State [Single State]
+      @end
+
+  *** Goal test : 
+      Test if something is within a list set, you can pop the values of a given list everytime you visited it 
+      You can have a way to test a explict item : Refer to notes in the book.
+
+  *** Path Cost
+      - Sum of each step is very important 
+      - How much or what was the total cost to getting from point /a/ to point /b/ 
+
+  *** Important Single state notes
+
+    *A solution is a path -> sequence of actions. from the initial state to a goal state*
+
+    *Optimal Solution is solutions with the lowest path cost*
+
+ ** Real word state space ? 
+    Real world is way to complex for our little brains, we not big brain man ... 
+
+    So there has to be a way to fix this right ? 
+
+  *** Solution to the big scary world
+
+      - [x] State space needs to be /*abstracted*/ -> Problem Solving becomes easier 
+      - [x] Abstracted State space is a set of real life states, but with a reduced complexity 
+      
+      Example of a real action that has been abstracted into prolog 
+      
+      @code prolog
+      result(At(A), DriveTo(B), Final).
+      Final = B
+      @end
+
+      In this example, we set a possible state, DriveTo, in which it will find all possible locations and actions from A to B and return B if it was true, such that it has reached its final destination. 
+
+      - Something important to note /It must reach a real state/ otherwise this will fail . 
+      
+
+ ** What does Abstracted State actually mean ? 
+
+    Abstraction by defintion is breaking somethinh down to be more readible, same principle is applied here. 
+
+    - when you abstract a given state: You have a set of real paths are are a solution in the real world - each
+    abstracted action should be easier than the original problem . 
+
+    
+
+
+
