@@ -6,3 +6,111 @@
   created: 2022-03-06
   version: 0.0.11
 @end
+= toc
+
+* Informed Search
+ ** What is informed search ?
+    - Problem specific - informed search, used in problem specific
+
+    You use informed search when you have extra information of the situation/ problem situation
+
+ ** Best First Search
+    - Dont get confused with Breadth First Search, as easy as it is to get confused
+
+    Best First Search is an instance of the tree algorithm, it has this amazing loop checking and a way to define the order
+    of when or how a node would expand
+
+    @code python
+    def tree_search(problem, strat)->bool:
+      x  = list()
+      x.insert(0, problem)
+      # Initalise the search tree with a state and let problem be its root
+
+      while True:
+        if len(x) == 0:
+          return False
+
+        L = x.pop() # wdepends on how you pop it, but you can base it of a functional value
+
+        if L in goal_state :
+          return L
+        else :
+
+          if L not in explored_set:
+            if expand(L).child not in explored_set
+              x.append(expand(L).child_nodes)
+            explored_set.append(L)
+    @end
+
+    Very simple psuedo python code, to represent how the loop check does, we hhave two lists to call from, the explored list set that contains all the nodes that we have explored
+    and the frontier list set that is teh list that we are adding to , i.e the expanded nodes
+
+    1. Tree structure is required
+    2. Initial state is required
+    3. Set the frontier
+    4. For exapme if the frontier of the search tree is empty that woudl mean that we have visited all teh nodes - else we choose and remove a node
+    5. i.e how woudl you remove a node, lifo fifo, it depends on a situation, or you can base it off a cost function
+
+  *** Idea Behind best first search
+
+      1. Use a $evaluate$ function f(n) which is a cost estimate
+        - you have a list of all the paths and then you would also have an estimate of those paths to a goal, based on
+        teh evaluate function
+        @code python
+        [(1,50), (3,30) ... ]
+        @end
+        Think of a List(Tuple(Path, Evaluation))
+
+      2. Sorted by the cost of the nodes that you are expanding
+      3. Frontier is a queue - sorted in decreasing order, with respect of the values that you want to get
+
+   **** Special Cases
+        1. Greedy search
+          Cost estimate(node) = heuristic function to goal(node)
+
+          i.e f(n) = h(n)
+          heuristic function to estimatated cost from current goal to node.
+
+        2. A* Search
+          Cost estimate(node) = actual cost(node) + heuristic function to goal(node).
+          i.e f(n) = g(n) + h(n)
+
+ ** Heuristic function
+    Best First search can go with multiple search options
+    One of them is the heuristic function h(n)
+
+    1. /h(n)/ is the estimated cost of the cheapeast path from teh state at node N to the goal state
+
+    2. Unlike g(n) it depends on teh state node n ;
+
+    3. Provides information on top of the problem description so it informs the search, in this case you are constantly updating your search algorithm to find the most optimal solution
+      -> This prediction comes in handy when trying to define some value
+      - Estimated information - will normally be provided as additinal information to a given solution
+
+      - Sasy you are trying to go from location A to location B :- Think of what information you have at the time, and
+         what additional information you would require to solve this problem ?
+         ,Current Information,
+          - General location of A and B
+          - Cords
+          - Cost
+         ,Additional Information, -> Not always provided but we require extra knoledge
+          - Total distance
+          - external routes
+          etc ...
+
+    4. You are /not/ allowed to have non negative values \implies h(n)> 0
+      The only time a heuristic search can equal 0, or the only time where /h(n) = 0/ is when /h(n) = 0 if n is in goals/
+
+ ** Greedy search
+    Greedy search expands the node that appears to be teh closest to the goal .
+
+    - The idea is that it will lead us closer to the goal state
+    - Just use the ehuristic function
+      @math
+      f(n) = h(n)
+      @end
+      - you expand the node with teh least cost within the frontier list
+
+  *** Main Information About Greedy Search
+
+  *** Optimal, Time, Space etc.
