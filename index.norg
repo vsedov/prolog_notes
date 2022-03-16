@@ -186,3 +186,61 @@
                                                         if you had [2 5 14 ]
                                                         you would then prune the rest ...
    @end
+
+  *** Extra information about pruning
+
+      Pruning does not affect the final result, Why is that ?
+      Because im *BATMAN* well yes and no
+
+      you see, you have this set of evaluation right, max min max min their are certain rules black and white can follow through with
+
+      so like look at the example above the abstracted version would look like this :
+
+      @code comment
+         Max of below
+            │
+            │
+            ▼
+      A set of Min values of below
+            │
+            │
+            │
+            ▼
+     A set of Max values of below
+      @end
+      Using this logic, say we have oour LHS give us a min value of 3 our middle gives us our min of 2, by default we know that this function evaluates minimum values, if our value is 2 we cant do anything else so we have to skip it
+      in skipping it we take out the rest of the branchs, because say we evaluate 2, and the next val is -1 , tf is that going to do, our main function or top level function is taking hte max of our values not the min ... so in that scinario we know we just skip it, because it does not apply to what we are going to do .
+
+      Compared to the next principle or the RHS where our first min value was 14, omg we found a value greater than 3 ? well yes but we have to take the min of those values right, in that case the min is 2 and hence we ditch it
+
+      if 2 was in front then we could prune cause pruning is op
+
+ ** Outline: phantom pruning episode 1
+  *** Time:
+      Time is based on our ordering so we can in theory with pruning reduce everything with O(B^{m/2}) which is nuts thats legit half of our problem solved
+  *** Space
+      There is a limit though, one of them being space and resource limits, one of the main issues with this is that the limit behind  this is too much, or that if you have to explore each node, you would use more memroy, which is not ideal.
+  *** Optimal
+      Yes it is optimal, we are legit halving our search time >.<
+
+   Overall i think this is good, but there are very important problems, and i think search and sorting algorothm would play a massive part into how this would work overall.
+
+
+   | $Digression : exact values dont matter$
+    *Behaviour is always preserved*
+    /OMG/ How ? whoaaa nade kore ???? {Shock FACE}
+     Well they are preserved under any monotonic evaluation ?
+
+     wtf does monotonic mean ?
+     > monotonic function is a function between ordered sets that preserves or reverses the given order. This concept first arose in calculus, and was later generalized to the more abstract setting of order theory
+     Welp their you go, so if its in order you are a o k
+   | _
+
+* Overall
+ 1. Game theory is weird
+ 2. Perfect game is impossible, but you have to be approximate with your values and estimation
+ 3. Good idea to think about what to think about, and then what that is thinking about, and then what that is thinking about, dam this is confusing isnt it
+ 4. Uncertaintiy contraints asigns each value to its state
+ 5. Optimal decision depends on teh second dude
+
+ Games are to Ai as grand prix is to automobile design, but hey we are getting there
