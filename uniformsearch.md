@@ -29,15 +29,18 @@ State vs Nodes
 
       3. A _**State**_ Does not have Parent, child, depth or path cost !!
 
-┌──   ──┐     <- State                               ┌──────┐
-│ 5 4 _ ├────────────── <-   ┌─┬────────────────────►│Parent│ Node
-│ 6 1 8 │                    │A│ Node                └──────┘
-│ 7 3 2 │             ┌─────►└─┘◄─────┐
-└──   ──┘             │               │
-│               │
-┌─┤               ├─┐
-│N│               │N│ -- Children Node
-└─┘               └─┘
+```comment
+
+     ┌──   ──┐     <- State                               ┌──────┐
+     │ 5 4 _ ├────────────── <-   ┌─┬────────────────────►│Parent│ Node
+     │ 6 1 8 │                    │A│ Node                └──────┘
+     │ 7 3 2 │             ┌─────►└─┘◄─────┐
+     └──   ──┘             │               │
+                           │               │
+                         ┌─┤               ├─┐
+                         │N│               │N│ -- Children Node
+                         └─┘               └─┘
+```
 From a tree perspective, a set can be represented in a matrix, where you have multiple Nodes - that has a parent
 We call that parent through some action
 
@@ -87,20 +90,22 @@ This algorithm listed above is the base algorithm between all the searches that 
 2. Remove a lead node L, depending on the search strat, could be fifo , lifo, and it could be based on the cost
 3. Once the node is retreved, we can check if it is a goal
 4. If it is not, then we have to expand the goal, and then we have to expand and generate new nodes
-┌─────┐
-┌───────────────────────────────►   │ Arad│    ┌──────────────────┐
-│                ┌────┬─────────┬───┴──┬──┴────┼───────────┐      │
-│                │    │  ┌──────┼──────┼───────┼────┐      │      │
-│                │    │  │      │      │       │    │      │      │
-│                │    │  ▼      │      ▼       │    ▼      │      │
-│                │    │ Sibu    │     Tisma    │    Zac    │      │
-│                └──┬─┴──┼──────┼──────────────┼┬────┼─────┴──────┤
-│ ┌──┬──────────────┴────┼┐     │              ││  ┌─┴─────┐      │
-│ │  │ ┌────┬───┬────┬───┘│     │              ││  │       │      │
-│ │  │ │    │   │    │    │     │              ││  │       │      │
-│ │  │ ▼    ▼   ▼    ▼    │     │              ││  ▼       ▼      │
-└─┼──┤arad  bob ola  foo  │     │              ││  Bill   Desmond │
-└──┴────────────────────┴─────┘              │└─────────────────┤
+```comment
+                                        ┌─────┐
+    ┌───────────────────────────────►   │ Arad│    ┌──────────────────┐
+    │                ┌────┬─────────┬───┴──┬──┴────┼───────────┐      │
+    │                │    │  ┌──────┼──────┼───────┼────┐      │      │
+    │                │    │  │      │      │       │    │      │      │
+    │                │    │  ▼      │      ▼       │    ▼      │      │
+    │                │    │ Sibu    │     Tisma    │    Zac    │      │
+    │                └──┬─┴──┼──────┼──────────────┼┬────┼─────┴──────┤
+    │ ┌──┬──────────────┴────┼┐     │              ││  ┌─┴─────┐      │
+    │ │  │ ┌────┬───┬────┬───┘│     │              ││  │       │      │
+    │ │  │ │    │   │    │    │     │              ││  │       │      │
+    │ │  │ ▼    ▼   ▼    ▼    │     │              ││  ▼       ▼      │
+    └─┼──┤arad  bob ola  foo  │     │              ││  Bill   Desmond │
+      └──┴────────────────────┴─────┘              │└─────────────────┤
+```
 └──────────────────┘
 Trees have their own recursive call, we are checking if we are reaching / hit a node at a given point
 We do this through evaluating some tree statergy at a given point,
@@ -276,15 +281,17 @@ B number of nodes and we split that between b/2 -> M number total depth
 ### Space
 Linear space -> O(bm)
 B number of child nodes for each level, and choose one of them to go to the maximum depth of the nodes
-│
-│
-┌─┘──┐
-│    ▼
-┌─┴┐
-┌┘  ▼
-▼ -> Max branch we would go to, and b number of nodes will be searched - and remembered through the process
-M is more larger than d -> time complexity will be worse but under the process, we only need to remember singlular banches => Search space is then reduced
+```comment
+        │
+        │
+      ┌─┘──┐
+      │    ▼
+    ┌─┴┐
+   ┌┘  ▼
+   ▼ -> Max branch we would go to, and b number of nodes will be searched - and remembered through the process
+   M is more larger than d -> time complexity will be worse but under the process, we only need to remember singlular banches => Search space is then reduced
 i.e the total number of steps that is required is reduced.
+```
 
 ### Optimal ?
 If you do not have a finite space then no this would no be optimal, as you entire answer can be on another layer - i.e what if you are searching an infinite RHS and the answer is on the LHS ?
@@ -352,5 +359,3 @@ O(B^[](d/2))
 O(B^[](d/2))
 ### Optimal ?
 Yes if you have a uniform searc
-
-# Summary Part 2

@@ -126,7 +126,7 @@ Heuristics follow a few goals
 3. heursitics deal with external info
 
 Back to greedy now
-$$
+```comment
 
             4  │ 10
         B  ┌───┴──┐ A
@@ -137,7 +137,7 @@ $$
            │       ▲
            └───────┘
                50
-$$
+```
 In this case a greedy algo would just pick B over A, due to the fact that the end node to get to 20 would be way more expensive, when it could fo just went from A
 
 The principle of greedy has allot of rng, and allot of recursive, and looping issues as well
