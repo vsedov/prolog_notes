@@ -6,3 +6,106 @@
   created: 2022-03-16
   version: 0.0.11
 @end
+
+* Propositional Logic
+ ** Entailment
+    Entailment is when a sentence follows from another, or when something would lead into another fact
+
+    @math
+     α |= β
+     iff every model where α is true then β is true
+    @end
+    what does that mean, its pretty much stating that ∀_x ∈ α --> β in some way
+    where alpha is a model or a set and beta is a set.
+
+
+    The way to think about it is the following :
+    @math
+    α and β are sets
+    [1,2,3,4,5] = β
+    and
+    [4,5,3] = α
+
+    m(α) ⊆ m(β)
+
+    @end
+    So what alpha and beta are they are logical setences, they are like teh following:
+    ,Today will be rainy, ,Water is blue, ,Water makes things wet and is directly not wet,
+    ___
+
+    Models are exactly where or exactly how the sentence would work, the model would allow us to find and distinguish how these setencances are assigned to this world in some sense
+
+  *** Examples of how models work
+
+      -- (x = 0) |= (xy = 0)
+          x = 0 entails xy = 0
+          because anything multiplied by x will give us a zero
+
+      -- (p = True) |= (p ⩔ Q)
+          if p is true then p or q will be true
+          -- you can prove this through truth tables, so you look at if a value would hold
+
+      -- (p ⩓ q) |= (p ⩔ Q)
+        --  this is more logic, but when p and q is true then that would mean at least p or q would be true
+
+      -- ((q => p) ⩔ r)) |= (q => p) [𝐱] -> Wrong this is a false statement
+          -- this is false with respect of its values, q \implies p or r entails q \implies p which is false
+
+      -- (q => p) |= ((q => p) ⩔ r)
+          -- This is true, as it entails a large in turn
+
+      -- x,y set where x,y ∈ {brady bunch} ⩔ x != y |= x,y set x is a relative of y
+        -- When the lhs be true then the right rhs would also be true
+
+ ** Soundness and Completeness
+    1. Semitics, which give meaning to the real world which gives syntax
+    2. Deductive system, which allows us to reason about the logic and the real world
+
+   **** Syntactic Entailment
+        @math
+        looks like
+        |- A
+        @end
+        If you have a proposition for A you can create a proof tree for it
+        Under some assumption you can then prove syntatctic entailment -> this is provable factor
+        => but you have to proove it
+
+  *** Sound
+      A logic is sound, is when you can show or construct a proof tree which would lead to |= then that proposition would also be true on the left hand side
+      ,This is the key property we want, Showing something is true with respect to entailment
+      @math
+      |- leads into |=
+      @end
+
+  *** Complete
+      Completeness is teh converse of being sound, such that it would return from
+      @math
+      |= leads into |-
+      @end
+      where |= is true in real life, then we can show it is true within the syntax and proving completness is very hard to properly prove
+
+
+
+   **** Semantic Completeness
+        If |=A then |-A
+        Everything true in the emantic we can show syntacticly
+
+   **** Syntactic Completeness
+        @math
+        ∀ A: |- A or |- ⌿A
+        @end
+        if we have a proposition A we can either prove A or refute A, show A is true or show A is not A is true
+
+  *** Godels incompletness theorum
+      1. Consistent :
+        Our logic is saying we dont want to prove both A and not A
+        if We have this, then that means we can prove anything
+
+      2. Effectively Exiomatisable
+        All that means for any sentence we can tell if it is a axiom or not
+
+      3. Can express arhmetic
+        3 x 3 = 9
+
+      4. Syntactically complete
+        Show for every sentance it holds or if its convertse would hold
