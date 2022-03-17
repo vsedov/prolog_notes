@@ -1,0 +1,438 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{,--,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{,--,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+
+
+\title{
+	Propositional_logic
+}
+\author{
+	Viv Sedov --- \texttt{viv.sedov@hotmail.com}
+}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+
+\section{Propositional\_logic}
+
+\subsection{Simple Operations}
+When covering this : there are simple operations that you should know about :
+
+Simple Operation Not:
+
+\[\begin{array}{c | c}
+    p & \neg p \\
+    \hline
+    1 & 0 \\
+    0 & 1
+\end{array}
+\]
+
+Such that in this case it is the opposite given value $\neg p $ would be the direct opposite of the given Value of P .
+
+For example say that you have the following
+
+\[\begin{array}{c c | c}
+    p & q & p \land q\\
+    \hline
+    1  & 1 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 0
+\end{array}\]
+In this example, we are stating the following command : $\neg(14 > 6)$ is false , we create this truth table to prove if that is true or not .
+
+$P \land Q $ is true $\iff$ p and q are true
+
+Simple $\lor$ - OR
+
+
+\[\begin{array}{c c | c}
+    p & q & p \lor q \\
+    \hline
+    1 & 1 & 1 \\
+    1 & 0 & 1 \\
+    0 & 1 & 1 \\
+    0 & 0 & 0 \\
+\end{array}\]
+
+In this example above , for this to hold true, atleast one of teh values would have to have a one it to hold true, this is known as an \textit{Inclusive} or as in you can say the following and it would make sense:
+\textbf{I will go to the shops $\lor$ i will go to the coast}\\
+
+\\
+
+Simple Operation $\implies$
+This is where if something is true the other must be true , or where you given an equivalent pointer to if p then q
+
+
+\[\begin{array}{ c c | c }
+    p & q & p \implies q \\
+    \hline
+    1 & 1 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 1 \\
+    1 & 1 & 1 \\
+\end{array}\]
+
+
+With the above example this is not cause and effect , there is a reason for why this occours , and that is that there is a pointer such that it acts like an if statment, with the following code shown below :
+
+\begin{lstlisting}
+foo = True
+if foo:
+    return 1
+else:
+    return 0
+\end{lstlisting}
+
+The code above is rather simple , but shows that if something is true , then you would have some sort of value expression , or some pointer that would return if it is correct or not .
+
+In the weird scenario of f and t , where if f is false it implies that q is true , that is because  the q value is true , meaning that it would hold , a little trick for this one is that for what ever the second value is , if it is true , it will hold , if both are false , then it will true , though if one is true and the other is false , it will not hold .\\
+
+Logically equivalent $\iff$ this can also be seen as if and only if or iff \\
+Here is an example of the logical truth table behind this
+\[\begin{array}{c c | c }
+    p & q & p \iff q \\
+    \hline
+    1 & 1 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+\end{array}\]
+
+With this , Where if something is true then the other must be true or if its false then the other would have to be false , in this case you are seeing if these two values are the same .
+
+Example Exersises of how this would all work :
+\\
+Given that :
+\[p = Logic is fun for jane \\ \\
+q = david does not like cabbage \\ \\
+r = david eyes are blue \]\\
+
+We can then further express all of this in a notational form .
+\begin{itemize}
+    \item $\neg p \land q$
+        This would imply the following truth table
+        \[\begin{array}{c c c | c }
+            \neg p & p & q & \neg p \land q \\
+            \hline
+              0 & 1 & 1 & 0 \\
+              1 & 0 & 1 & 1 \\
+              0 & 1 & 0 & 0 \\
+              1 & 0 & 0 & 0
+        \end{array}\]
+    \item $\neg R \land \neg P \implies$  Both are not goint to be true such that you would get only one possible answer for this  .
+\end{itemize}
+
+
+Multiple truth table example :
+show the following in a truth table :
+\\
+\[p \land (q \implies r) \]
+
+\[\begin{array}{c c c | c | c }
+    p & q & r & q \implies r & p \land (q \implies r) \\
+    \hline
+    1 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 0 & 0 & 0\\
+    1 & 0 & 1 & 1 & 1\\
+    0 & 1 & 0 & 0 & 0\\
+    0 & 1 & 1 & 1 & 0\\
+    0 & 0 & 0 & 1 & 0\\
+
+\end{array}\]
+
+Here is another example to understand how these tables would all work together
+\\
+\[(p \implies q) \land (q \implies p)\]
+\[\begin{array}{c c c | c | c}
+    p & q & q \implies p & p \implies q & (p \implies q) \land (q \implies p)\\
+    \hline
+    1 &  1 & 1 & 1 & 1 \\
+    0 &  1 & 0 & 1 & 0 \\
+    1 &  0 & 1 & 0 & 1 \\
+    0 &  0 & 1 & 1 & 1 \\
+\end{array}\] \\
+
+\\ \\
+
+
+\begin{definition}
+ Two propositions are equal if they have teh same truth values , they are known as $ P \implies Q$ this is known as logically equivalent
+\end{definition}
+
+\begin{definition}
+A proposition is tautology if it is always true an example of this is $ P \lor \neg P$ this is always true
+
+\end{definition}
+
+\begin{definition}
+A proposition is a contradiction if it is always false for example $ P \land \neg P $ this is always false
+\end{definition}
+
+\begin{definition}
+A proposition is \textbf{Contingent} if it is neither Always true or false
+\end{definition}
+
+\\
+\section{Disjunctive Normal Form}
+A given formula is said to be a \textit{Disjunctive normal form} when it is an Or $\implies \lor$ this is known as \textbf{DNF} a function is conjunctive when it has an $ \land $ form , within their proposition logic .
+
+\[(p \land \neg q \land r) \lor (\neg q \land \neg r) \lor q \]
+
+Everytime a given formula is built , we would folow the rules of propositional calculus , and how for each conjunctive formula there should be a disjunctive formula as well .
+
+\subsection{DNF of mini terms for truth tables}
+\begin{itemize}
+    \item For each row whose truth value is true , write doen for each of the prposition variables , of $ p_i $ in the formula of it self , either $P_i$ is true in row or $\neg P_i$ if false.
+    \item Repeate teh first pointer , for the truth table where the formula is true and write down the dijunction of the conjuctions .
+\end{itemize}
+
+What you will rsee is that those two values will equal up such that the result of teh formula in DNF is the equivalent to the original formula .
+
+\section{Conjunctive Normal Form}
+A formula is said to be \textbf{Conjunctive Normal Form} when its conjunction is $ \land $ of disjunctive of $ \lor $ an example of this is shown below :
+\[(\neg P \lor Q \lor R \lor \neg S) \land (P \lor Q) \land \neg S \land (Q \lor \neg R \lor S)\]
+
+Every expression built up according to the rules of calc , and suchj that for each conjunctive formula there is a similar or an equivelent formual that can be written in disjunctive form .
+
+\paragraph{Summary}
+\item Conjunctive form , or in brackets , and on the outside
+\item Disjunctive form,  And in the brackets and or on the outside
+\newpage
+\section{Logical Equivalences}
+We can use this to obtain normal form , when we use the implication law to eliminate subproccess - when ever you have a doubel negation and demorgans to bring a $ \neg $ you what this value to be on the outside  : here are the sub process of how this can be done :
+
+
+\[\neg\neg P \iff P \]
+This rule is the double negation Law \\ \\
+
+\[ \begin{array}{c}
+    (P \lor Q) \iff (Q \lor P) \\
+    (P \land Q) \iff (Q \land P) \\
+    (P \iff Q) \iff (Q \iff P)
+\end{array}\]
+Commutaive laws where both values would have to equal towards each other  .
+
+
+\[\begin{array}{c}
+    ((P \lor Q) \lor R) \iff (P \lor (Q \lor R))\\
+    ((P \land Q) \land R) \iff (P \land(Q \land R)) \\
+\end{array}\]
+This is the associative laws , where it is very similar to how they work in matricies in which they can equate towards each other . \\
+
+\[\begin{array}{c}
+    ((P \lor Q) \land R) \iff (P \lor (Q \land R))\\
+    ((P \land Q) \lor R) \iff (P \land(Q \lor R)) \\
+\end{array}\]
+This lase is the distributive law , in which the given values would be changed within a DNF and CNF representation
+
+\[\begin{array}{c}
+    (P \lor P) \iff P \\
+    (P \land P) \iff P
+\end{array}\]
+Idempotent laws where the values of it self would always equal to it self no matter what .
+
+\item Demorgans Law :
+
+\[\begin{array}{c}
+    \neg(P \lor Q) \iff (\neg P \land \neg Q)\\
+    \neg(P \land Q) \iff (\neg P \lor \neg Q)\\
+    (P \land Q) \iff \neg(\neg P \lor \neg Q)\\
+    (P \lor Q) \iff \neg(\neg P \land \neg Q)\\
+\end{array}\]
+Most times when you lookat demorgans law , you will notice that its very similar to teh laws that have been stated above, but the thing that you want to note is that you will see that they are equal in some sense ,  where an or , is a direct link with Not  and And it self.
+
+
+\item $\S$ Contrapositive Laws
+    \[\begin{array}{c}
+    (P \implies Q) \iff (\neg Q \implies \neg P)
+    \end{array} \]
+
+    implication that imply towards each other are contrapositive and hence you can switch out the given details of that infomation .
+
+    where If Q is an active reciever then P must be an active pointer is teh same as stating if not p equates to Not q, in some sense you should understand how that would work .
+
+\item $\S$  Implication
+\[\begin{array}{c}
+    (P \implies Q) \iff (\neg P \lor Q)\\
+    (P \implies Q) \iff \neg(P \land \neg Q)
+\end{array}\]
+
+\item  $\S$ Furhter implication
+\[\begin{array}{c}
+    (P \lor Q) \iff (\neg P \implies Q) \\
+    (P \land Q) \iff \neg(\neg p \implies \neg Q)
+\end{array}\]
+Thi sone is rather annyoing , but the principle of how this works is very intriguing , if you do prove this via proof table you will see that they are truly equivalent:
+$P \lor Q$
+
+\[\begin{array}{c c | c}
+    p & q & p \lor q \\
+    \hline
+    1 & 1 & 1 \\
+    1 & 0 & 1 \\
+    0 & 1 & 1 \\
+    0 & 0 & 0 \\
+\end{array}\]
+
+
+
+this is the same as :
+$(\neg P \implies Q) $
+
+
+\[\begin{array}{c c c | c}
+    P & Q & p \implies Q & (\neg P \implies Q)\\
+    \hline
+    1 & 1 & 1 & 1 \\
+    0 & 1 & 1 & 1 \\
+    1 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 \\
+
+\end{array}\]
+
+If you look at the given tables above you will notice that indeed they are the same, a truth tabel may be long but they are very good at breaking down the given data that you have into something more readble .
+
+\item Further Implies and equivalences
+
+\[\begin{array}{c}
+    ((P \implies R) \land (Q \implies R)) \iff ((P \lor Q) \implies R)\\
+    ((P \implies Q) \land (P \implies R)) \iff ((P \implies (Q \land R)) \\
+\end{array}\]
+With this law you are using the given equivelences that are shown above with the disjunctive and conjunctive views ,but within an equivelence ratio
+
+
+\item  $\S$ Exportion Law
+\[\begin{array}{c}
+    ((P \land Q) \implies R) \iff (P \implies (Q \implies R))
+\end{array}\]
+
+This one is a good one , Mainly because if anything that does imply to another pointer , you can show that they are all equal towards each other .
+
+
+
+\item $\S$ Side Notes
+    Within the compound proposition $\neg(P \lor Q) \&  (\neg P \land \neg Q) $ they are the same , hence why when you look at the proof that is shown above you will see that they are the same .
+
+When ever you look at equivelences you will notice that connectives $ \lor \land $ will allways suggest that $ P \lor Q \implies Q \lor P $
+
+\newpage
+
+\section{Sound and Completness without the bs}
+
+\begin{itemize}
+    \item Sound
+        If the argument can be derived from A then it is valid
+        \begin{math}
+            \gamma \vdash A \text{ then } \gamma \models A
+        \end{math}
+        Such that our problem is sound, if \[
+            \gamma / A
+        \]
+        What this means is that it does not have a counter example -> so if you have a counter example it is not sound
+    \item Completness
+        \begin{math}
+            if \\ \gamma \models A \text{ then } \gamma \vdash A
+        \end{math}
+        If an argument is a valid and if no counter example is given then it can in principle it can be derived.
+\end{itemize}
+
+We say something is complete iff all teh arguments that have no counter example can be derived.
+\textit{What does this mean ? }\\
+\textbf{Soundness means that you cannot prove anything that is wrong} \\
+\textbf{Completness means that you can prove anything that is right} \\
+
+in both cases we are talking about some fixed system of rules that we follow when proving some given variable
+we represent this proof with the following item
+
+\[
+    \vdash
+\]
+Let me characterize soundness and completeness using a silly example. Suppose you are in the business of making machines which make widgets, and suppose that someone comes to you and says "I need a machine which makes red widgets which are either round or square". You go off and build a widget producing machine, and show it to your potential customer. To convert her from a potential to an actual customer, you must convince her of two things: first, that your widget machine will only produce square or round red widgets, and not blue widgets, and second, that your machine will produce both round red and square red widgets, and not only square red ones. If your machine satisfies the first requirement, then it is sound. If you machine satisfies the second requirement, then it is complete.
+
+\\
+another example
+\\
+Imagine I have a box and many crystal balls with color either black or white but not both.
+\begin{itemize}
+    \item Sound : every ball inside the box are black but does not mean all the balls outside are white - sound says oh hey ive got a few negative values but i know that there is some properties that i want that exist
+    \item Completness is Every ball outside the box are white, but does not mean all teh inside valls are black - complntness always accept black but not only.
+\end{itemize}
+
+% Make a list of examples of sound and completness discrete maths
+Another example of sound could be that if you have a function $f : \mathbb{R} \to \mathbb{R}$ and a set $S \subseteq \mathbb{R}$ then $f$ is continuous if and only if $f$ is continuous at every point in $S$.
+
+we can see that soundness and completeness are the same thing, but soundness is more general and completeness is more specific.
+
+% give a list of rules to prove sound
+\section{List of rules proving sound}
+\begin{math}
+    \vdash \text{soundness} \\ \gamma \models A \text{ then } \gamma \vdash A  \\  \text{soundness} \equiv \text{soundness} \equiv \text{soundness}
+
+
+
+
+\end{math}
+
+
+
+\end{document}
