@@ -4,6 +4,5 @@
 \contentsline {subsection}{\numberline {2.1}DNF of mini terms for truth tables}{4}{}%
 \contentsline {section}{\numberline {3}Conjunctive Normal Form}{4}{}%
 \contentsline {section}{\numberline {4}Logical Equivalences}{6}{}%
-\contentsline {section}{\numberline {5}Sound and Completness without the bs}{8}{}%
-\contentsline {section}{\numberline {6}logic entailment}{8}{}%
-\contentsline {subsection}{\numberline {6.1}Modus Ponenens}{9}{}%
+\contentsline {section}{\numberline {5}Formal definition }{8}{}%
+\contentsline {subsection}{\numberline {5.1}Summary without the crap }{10}{}%
