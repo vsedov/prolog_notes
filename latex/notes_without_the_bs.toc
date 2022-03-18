@@ -5,4 +5,5 @@
 \contentsline {section}{\numberline {3}Conjunctive Normal Form}{4}{}%
 \contentsline {section}{\numberline {4}Logical Equivalences}{6}{}%
 \contentsline {section}{\numberline {5}Sound and Completness without the bs}{8}{}%
-\contentsline {section}{\numberline {6}List of rules proving sound}{8}{}%
+\contentsline {section}{\numberline {6}logic entailment}{8}{}%
+\contentsline {subsection}{\numberline {6.1}Modus Ponenens}{9}{}%

@@ -418,21 +418,43 @@ Imagine I have a box and many crystal balls with color either black or white but
     \item Completness is Every ball outside the box are white, but does not mean all teh inside valls are black - complntness always accept black but not only.
 \end{itemize}
 
-% Make a list of examples of sound and completness discrete maths
-Another example of sound could be that if you have a function $f : \mathbb{R} \to \mathbb{R}$ and a set $S \subseteq \mathbb{R}$ then $f$ is continuous if and only if $f$ is continuous at every point in $S$.
+\section{logic entailment}
+Entailment is when you have a logical statement and you want to see if it is true or false , if it is true then you can say that it is true , if it is false then you can say that it is false , if it is unknown then you can say that it is unknown .
 
-we can see that soundness and completeness are the same thing, but soundness is more general and completeness is more specific.
-
-% give a list of rules to prove sound
-\section{List of rules proving sound}
+we can say if all models of alpha are subset of all subset in beta
 \begin{math}
-    \vdash \text{soundness} \\ \gamma \models A \text{ then } \gamma \vdash A  \\  \text{soundness} \equiv \text{soundness} \equiv \text{soundness}
-
-
-
-
+    \forall \alpha \in \beta \text{ then } \alpha \subseteq \beta
 \end{math}
 
+what you need to know is that beta here can contain more things, it cna contain more information, it can have a set of the following
+\begin{math}
+    m(\alpha) \subset m(\;\beta) \\
+    \alpha \models \beta \\
+    text{\text{we can say that beta can be a set of large ammount of data [false false true] but where alpha is true and is within beta, then we can say that would hold. For every model alpha is true, beta would also be true}}
+\end{math}
+beta has the power to contain more data that is not related to what alpha would require. Alpha is more specific than beta , and beta is more general than alpha.
+A good example with tables is teh following
+\begin{math}
+    ((x \iff q) \lor r) \models (q \implies x))
+\end{math}
+\begin{equation}
+    \begin{array}{c c c | c}
+        x & q & r & q \implies x \\
+        \hline
+        1 & 1 & 1 & 1 \\
+        0 & 1 & 1 & 1 \\
+        1 & 0 & 1 & 1 \\
+        0 & 0 & 0 & 0 \\
+    \end{array}
+\end{equation}
+if x implies q and q implies x or R this models q implies x why ? because if x is true then q is true and if q is true then x is true , if x is false then q is false and if q is false then x is false , if x is unknown then q is unknown and if q is unknown then x is unknown.
+
+\subsection{Modus Ponenens}
+Defined through the following
+\begin{math}
+    \alpha \models \beta \iff \exists \gamma \text{ such that } \gamma \models \alpha \text{ and } \gamma \models \beta
+\end{math}
+this reads as if alpha models Beta if and only if for some game where yame models alpha and game models beta.
 
 
 \end{document}

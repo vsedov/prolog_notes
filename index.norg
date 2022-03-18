@@ -84,10 +84,20 @@
       @end
       where |= is true in real life, then we can show it is true within the syntax and proving completness is very hard to properly prove
 
+  *** Valid
+      A statement is valid if all teh returning values from the lhs and the rhs, return true, meaning that you cannot have an expression of the following
+      @code comment
 
+        0  0  0
+        1  1  1
+        1  0  1
+        0  1  0
+
+      @end
+      here you fail on o o and 0 1 and hence the statement is not true for all the given data that it contains
 
    **** Semantic Completeness
-        If |=A then |-A
+        If ⊧ A then ⊩ A
         Everything true in the emantic we can show syntacticly
 
    **** Syntactic Completeness
@@ -109,3 +119,33 @@
 
       4. Syntactically complete
         Show for every sentance it holds or if its convertse would hold
+
+ ** Horn Form
+    - Question your self when is KB ⊧ α True ?
+      1 . When the models of KB are included in all the models of α
+      2 . Whenn α is true in all worlds where kb is true
+    KB ⊧ α if kb is true and alpha is true then you should be fine think of it that way.
+    KB <= α
+    > this is just simple subset informing
+
+    | $Definite Claus$
+    a definite clause is where everything is faulse but one, you can then write it in a format where you have the following layout
+    | _
+    [img/2022-03-18-01-00-46.png]{"image"}
+
+  *** What is a horn clause ?
+      A horn clause is a clause where it is at most, and key word here is atmost, you have only one positive literal or none <= 1
+      Such you have only three type of horn clauses that you would have follow
+  *** Types of horn clauses
+      1. A rule :
+        A definite clause is with atleast one positive literal
+      2. A fact :
+        A definite clause with 0 negative literals, -> John is a man or john is called john
+      3. A goal state as you are defined as it is, you know it is a goal
+
+    you have a disjunction and you only have one of these positive literals - ^^
+
+    - [x] /In modus Pones - in horn form - it is complete and sound for kB/
+    - [x] /Can be used for both forward and bakkward chaining algorithms/
+
+* Forward and Backward Chaining
