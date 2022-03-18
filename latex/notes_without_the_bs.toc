@@ -6,3 +6,7 @@
 \contentsline {section}{\numberline {4}Logical Equivalences}{6}{}%
 \contentsline {section}{\numberline {5}Formal definition }{8}{}%
 \contentsline {subsection}{\numberline {5.1}Summary without the crap }{10}{}%
+\contentsline {section}{\numberline {6}Resolution algorithm}{12}{}%
+\contentsline {subsection}{\numberline {6.1}Resolution properties}{13}{}%
+\contentsline {subsection}{\numberline {6.2}Horn Form KB}{14}{}%
+\contentsline {section}{\numberline {7}Chaining}{14}{}%
