@@ -801,6 +801,33 @@ We have this big kb and we have to go through each one to represent it. it is im
 
 
 \section{First Order Logic}
+Note : Just use implication over and
+when you have
+\begin{math}
+	\forall x \implies Y
+\end{math}
+this is sound and works but if you have or use and with for all, then you are stating that everything and everything would be x and y
+
+\begin{math}
+	\forall x \land  y(x)
+\end{math}
+see how that does not hold
+
+\begin{math}
+	\exists xp \implies y
+\end{math}
+this does not pair well
+
+\begin{math}
+	\exists  xP \land Y
+\end{math}
+this is better
+
+\begin{itemize}
+	\item And with Exist
+	\item forall with Implies
+\end{itemize}
+
 
 
 \end{document}
