@@ -751,28 +751,56 @@ $\implies$ Just look at the slides
 			      \alpha  \land \neg \beta , \gamma
 		      \end{displaymath}
 	      \end{definition}
-			\item Satisfiability is met only for the knolwedge base under the pretence that
-				\begin{math}
-					KB \models \alpha  \iff (Kb* \land  \neg \alpha)
-				\end{math}
-				which proving this will allow us to say this has no models and therefore is unsatisfiable
+	\item Satisfiability is met only for the knolwedge base under the pretence that
+	      \begin{math}
+		      KB \models \alpha  \iff (Kb* \land  \neg \alpha)
+	      \end{math}
+	      which proving this will allow us to say this has no models and therefore is unsatisfiable
 
 \end{itemize}
+
+
 
 \subsection{Modus Ponens}
 \begin{itemize}
 	\item \begin{definition}[Modus Ponens]
-		      \( \forall \alpha \in KB \ \ \alpha \models \beta \ \ \beta \models \gamma \ \ \gamma \models \delta \ \ \delta \models \alpha \text{ Where } \\
-		      \beta \in KB \ \ \gamma \in KB \ \ \delta \in KB \ \ \alpha \models \gamma \ \ \gamma \models \delta \ \ \delta \models \alpha \text{} \\
+		      \begin{math}
+			      \( \forall \alpha \in KB \ \ \alpha \models \beta \ \ \beta \models \gamma \ \ \gamma \models \delta \ \ \delta \models \alpha \text{ Where } \\
+			      \beta \in KB \ \ \gamma \in KB \ \ \delta \in KB \ \ \alpha \models \gamma \ \ \gamma \models \delta \ \ \delta \models \alpha \text{} \\
+		      \end{math}
 	      \end{definition}
 \end{itemize}
 
+\subsection{Chaining}
+\subsubsection{Forward Chaining}
+Forward chaining is the process of deriving a new sentence from a set of sentences that are already known.
+\begin{theorem}
+	\begin{displaymath}
+		\begin{array}{l}
+			\textbf{KB} \vdash_i \alpha   \\
+			\textbf{KB} \vdash_i \beta    \\
+			\textbf{KB} \vdash_i \gamma   \\
+			\textbf{KB} \vdash_i \delta   \\
+			\textbf{KB} \vdash_i \epsilon \\
+		\end{array}
+		\Rightarrow \alpha \models \beta \models \gamma \models \delta \models \epsilon
+	\end{displaymath}
+\end{theorem}
 
+\begin{itemize}
+	\item Forward chaining is a automatic process that can be used to derive new sentences from a set of known sentences.
+	\item May do allot of dead work
+\end{itemize}
+\subsubsection{Backward Chaining}
+Backward chaining is the process of deriving a new sentence from a set of sentences that are already known.
+the principle is teh same as forward chaining but we start from the end of the sentence and work our way back to the beginning.
+
+\subsection{Summary}
+Propositional Logic does not have enough power...
+We have this big kb and we have to go through each one to represent it. it is impracticle, forward and backward chaining are linear time, and are only \textit{Complete} if you are working for horn clauses , else it is rather hard to convey.
 
 
 \section{First Order Logic}
-
-
 
 
 \end{document}
