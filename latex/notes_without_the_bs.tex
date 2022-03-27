@@ -1,7 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass{article}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{geometry}
 \usepackage{graphicx}
@@ -828,6 +827,175 @@ this is better
 	\item forall with Implies
 \end{itemize}
 
+\subsection{Examples}
+\begin{itemize}
+	\item Which sentance best represents someones's mother is someone's female parent
+	      \begin{math}
+		      \\
+		      \exists x, \exists y (Mother(x,y) \land (Female(x) \land Parent(x,y)))
+		      \qquad \\
+		      \text{Or}
+		      \\
+		      \forall x \forall y (Mother(x,y) \iff (Female(x) \land Parent(x,y)))
+		      \\
+		      \text{Or} \\
+		      \exists x \forall y(Mother(x,y) \implies (Female(x) \land Parent(x,y)))
+	      \end{math}
+	      This can be quote opiniated, wrt containement, but lets read them through
+	      \textit{Its the first and second one }
+	      \begin{itemize}
+		      \item there exist some x and some y where there is a mother x ,y and that x is a female and that x y is a parent
+		            what that kinda means is saying that there can be a parent that is not a mother, in short you can say that y and x can be a parent but does not implcity imply that it can be a mother
+		            its a bit confusing but just go with that logic
+	      \end{itemize}
+\end{itemize}
+\subsubsection{Quantifiers order}
+The order between all given Quantifiers are not the same and can be swapped between the first order logic points
+\begin{itemize}
+	\item \( \forall x \forall y  \) is the same as \( \forall x \forall y \iff \forall y \forall x \)
+	\item \( \exists x \exists y \)  is the same as \( \exists x \exists y \iff \exists y \exists x \)
+	\item \( \forall x \exists y  \) is \textit{Not} the same as \( \forall y \exists x \;\not\!\!\!\implies \forall x \exists y\)
+	\item \( \forall x \exists y Loves(x,y)\) Every x loves some y so \textit{Everyone in the world is loved by atleast one person }
+	\item \( \exists x \forall y Loves(x,y) \)Some x loves every Y is not the same as every x loves some y this is \textit{There exist a person who loves everyone in the world} the reason for this is because when you have two \( \forall A \forall  B \) this is a pair, that you can sort through
+\end{itemize}
 
+\newpage
+\subsubsection{Quantifier duality}
+Duality is important as these quantifiers are reversable
+So you can say something like this
+\[
+	\forall x \ \ likes(x, icecream) \equiv \neg \exists x \ \ \neg likes(x, icecram)\\
+	\\
+	\\
+	\qquad
+	\exists x \ \ Likes(c, brocolai) \equiv \neg \forall x \ \ \neg likes(x, brocolai) \]
+
+\subsection{More Examples to work on }
+\begin{itemize}
+	\item \begin{math}
+		      \forall x ,y(brother(x,y) \implies Sibling(x,y))
+	      \end{math}
+	      \\
+	      This is saying, for every x, if brother(x,y) then that logiclly implies every brother is a sibling
+	      \\
+	      \begin{math}
+		      \forall x y(Sibling(x,y) \iff Sibling(y,x))
+	      \end{math}
+	      \\
+	      Every x there is a y where x and y and y and x will always be a sibling
+	\item A first cousin, is a child of a parents sibling
+	      \\
+	      \begin{math}
+		      \forall x, y(FirstCoursin(x,y) \implies \exists p, p' Parent(p,x) \land Sibling(P', p) \land Parent(P',x))
+	      \end{math}
+	      \\
+	      for every x y , you have a first cousin under the condition that x and y is a firstcoursin for x to y and that there exist some p and p prime where parent of x is P and sibling of P prime is p and parent of y is P prime
+\end{itemize}
+
+\subsubsection{Wumpus world example }
+\begin{itemize}
+	\item Squares are breezy near a it : \textit{Diagnostic rule}, this is where infierence would come into play, where you infer \textit{Cause from effect}
+	      \begin{math}
+		      \forall y Breeezy(y) \implies  \exists x \text{ Pit}(x) \land Adjacent(x,y)
+
+	      \end{math}
+	\item Casual Rule : infern effect from cause
+	      \begin{math}
+		      \forall x, y \text{ Pit }(x) \land Adjacent(x,y) \implies Breezy(y)
+	      \end{math}
+	\item None of this is complete, the point is we done imply each other , though this can be built to become complete
+	      \begin{math}
+		      \forall y Breezy(y) \iff[\exists x \text{Pit}(x) \land  Adjacent(x,y)]
+	      \end{math}
+
+
+
+\end{itemize}
+
+\section{Usefull notes from the quiz}
+\begin{itemize}
+	\item Information about the knowledge base
+	      \begin{itemize}
+		      \item If a model is true in the \textit{Real world} then any sentance derived from that given model is sound through inference, procedure, and hence is entailed within the real world
+	      \end{itemize}
+	\item How do you tell if an agent is true in the real world ?
+	      \begin{itemize}
+		      \item If the agent has sensors, that allow you to create the connection with the sentance and that the agents knoledge base is sound then it would be true within the real world
+		      \item The ai agents learning ability generates general rules from expierence that the ai belives to be true, this is can be faliable, as this depends on how good the agent is at expressing its own information
+
+	      \end{itemize}
+	\item A satisfiable sentance is a sentance that is true in all models : \textit{True}
+	\item Following statements are unstatisfiable
+	      \begin{math}
+		      (\alpha  \land  \beta ) \land (\neg \alpha  \land (\neg \alpha \implies \neg \beta ))
+	      \end{math}
+	      this will always resolve to zero
+	      \\
+	      \begin{math}
+		      \Delta  \land  \neg \Delta
+	      \end{math}
+	      This will also result in zero, anything with contains a negative will never be satisifable
+	\item Horn Clause examples
+	      \begin{itemize}
+		      \item \begin{math}
+			            (\neg B_1 \lor \neg B_2 \ldots \neg B_n \lor C)
+			            \text{Horn clause rule, everything is negative but one}
+		            \end{math}
+		      \item \begin{math}
+			            B
+		            \end{math}
+		            This is true
+		      \item \begin{math}
+			            \neg (D_1 \lor  d_2 \lor  d_3)
+			            \text{Everything is a negative ->  Goal state}
+		            \end{math}
+
+		      \item Proof facts
+		            \begin{itemize}
+			            \item to prove \( KB \models \alpha  \) is equivalent to showing that \( Kb* \land \neg \alpha  \) has no models
+			            \item the expression \( Kb* \implies  \alpha  \) and \( KB \models \alpha  \) are connected through deduction theorem
+		            \end{itemize}
+
+	      \end{itemize}
+	\item \textbf{\textit{Problems with Propositional_logic \( \implies  \)   does not support variables}}
+	      Propositinal logic has an issue where it does not support variables, due to this, your statement would have to be very large
+
+	      \\
+	      this is true, propositional logic works through the factor that you work with values, and cant assign anything directicly as it propositional logic follows two main principles
+	      \begin{itemize}
+		      \item Declarative, pieces of syntax respond to facts
+		      \item Compositional
+		            meaning that \( p_{12} \land B_{11}\) is derived from me meaning of \( \text{p over 1 2 and b over 1 1 } \)
+	      \end{itemize}
+
+
+\end{itemize}
+
+\section{Temporal Reasoning}
+
+\subsection{Classification of Ai temporal reasoning problems}
+\begin{itemize}
+	\item Prediction problem :
+	      i.e project problem, given an inital state and casual rule, describing a domain, we want to derive the state of the world resulting from some given sequence of actions
+	      Think of how a chess game would work, thiunk of a stack, when you are going through data .
+
+	\item Planning problem :
+	      Planning problem given a description of the inital state, how are you going to change to rules to get to your domain state, through what actions will allow you to get to that point ?
+
+	      \begin{align}
+		      \includegraphics[width=200px]{../img/2022-03-26-23-59-10.png}
+	      \end{align}
+	\item Explanation problem - given some casual rules describing a domain, we want to discover facts about our given state
+	      \textit{You wake up in the morning and you head downstairs in the kitchen theres a plate on the table and a bowl with a little milk left in, you can then say by assumption that your housemake was awoke before you and already had their breakfast}
+
+\end{itemize}
+
+
+\subsection{Frame problem}
+\subsection{Situational Calculus}
+\subsubsection{Language}
+\subsubsection{Axioms}
+\subsubsection{Examples}
+\subsection{Summary}
 
 \end{document}
