@@ -90,3 +90,10 @@
    A star will go through each point and go over each one to check what is the most optimal point between both the g(n) and h(n) value, to go over and to expand.
 
    A* is faster and better than uniform cost search . - uniform cost search is a way to get there, Uniform cost search is a A* with a really shit version of A*, so you have a really bad version of A* . So you have the worst heuristic possible , and that is pretty much what Uniform search.
+
+   Important note
+   - */Our heuristic value would have to be admissible, heuristic. What that means is that we can never
+   overestimate the true cost of what the value is, but we are allowed to underestimate values./*
+
+   - */Another thing to note is our heuristic value should be Consistent, meaning that it is monotonic, what
+   that means is if it is monotonic, it means we have good heuristic properties./*

@@ -43,19 +43,19 @@
     @end
 
     Very simple psuedo python code, to represent how the loop check does, we hhave two lists to call from, the explored list set that contains all the nodes that we have explored
-    and the frontier list set that is teh list that we are adding to , i.e the expanded nodes
+    and the frontier list set that is the list that we are adding to , i.e the expanded nodes
 
     1. Tree structure is required
     2. Initial state is required
     3. Set the frontier
-    4. For exapme if the frontier of the search tree is empty that woudl mean that we have visited all teh nodes - else we choose and remove a node
-    5. i.e how woudl you remove a node, lifo fifo, it depends on a situation, or you can base it off a cost function
+    4. For exapme if the frontier of the search tree is empty that woudl mean that we have visited all the nodes - else we choose and remove a node
+    5. i.e how woudl you remove a node, life FIFO, it depends on a situation, or you can base it off a cost function
 
   *** Idea Behind best first search
 
-      1. Use a $evaluate$ function f(n) which is a cost estimate
+      1. Use a $evaluate$ function F(N) which is a cost estimate
         - you have a list of all the paths and then you would also have an estimate of those paths to a goal, based on
-        teh evaluate function
+        the evaluate function
         @code python
         [(1,50), (3,30) ... ]
         @end
@@ -79,9 +79,9 @@
     Best First search can go with multiple search options
     One of them is the heuristic function h(n)
 
-    1. /h(n)/ is the estimated cost of the cheapeast path from teh state at node N to the goal state
+    1. /h(n)/ is the estimated cost of the cheapeast path from the state at node N to the goal state
 
-    2. Unlike g(n) it depends on teh state node n ;
+    2. Unlike g(n) it depends on the state node n ;
 
     3. Provides information on top of the problem description so it informs the search, in this case you are constantly updating your search algorithm to find the most optimal solution
       -> This prediction comes in handy when trying to define some value
@@ -102,21 +102,21 @@
       The only time a heuristic search can equal 0, or the only time where /h(n) = 0/ is when /h(n) = 0 if n is in goals/
 
  ** Greedy search
-    Greedy search expands the node that appears to be teh closest to the goal .
+    Greedy search expands the node that appears to be the closest to the goal .
 
     - The idea is that it will lead us closer to the goal state
     - Just use the ehuristic function
       @math
-      f(n) = h(n)
+      f(n) = H(N)
       @end
-      - you expand the node with teh least cost within the frontier list
+    - you expand  node with the least cost within the frontier list
 
   *** Main Information About Greedy Search
       You have different types of Best First Search Algorithms, with very similar complexity, there are a few things that make it unique.
 
-      Greedy search is gredy, it is completly based on the fact that it needs some sort of heursitcal value to work of, it does not deal with your current weights.
+      Greedy search is greedy, it is completely based on the fact that it needs some sort of heursitcal value to work of, it does not deal with your current weights.
 
-      As mentioned above it requries that :
+      As mentioned above it requires that :
       @math
       f(n) = h(n)
       @end
@@ -156,7 +156,7 @@
 
         | $Space$
         O(B^m)
-        | _Similar to Big O of depth First Search
+        | _Similar to Big O of breadth First Search
 
  ** A * Search
     To first point out this search is overpowered, it can do allot, if you have the right information for it
@@ -246,38 +246,38 @@
               print('Path does not exist!')
               return None
 
-#define fuction to return neighbor and its distance
-#from the passed node
-      def get_neighbors(v):
-          if v in Graph_nodes:
-              return Graph_nodes[v]
-          else:
-              return None
-#for simplicity we ll consider heuristic distances given
-#and this function returns heuristic distance for all nodes
-      def heuristic(n):
-              H_dist = {
-                  'A': 11,
-                  'B': 6,
-                  'C': 99,
-                  'D': 1,
-                  'E': 7,
-                  'G': 0,
+      #define fuction to return neighbor and its distance
+       #from the passed node
+        def get_neighbors(v):
+            if v in Graph_nodes:
+                return Graph_nodes[v]
+            else:
+                return None
+      #for simplicity we ll consider heuristic distances given
+      #and this function returns heuristic distance for all nodes
+        def heuristic(n):
+                H_dist = {
+                    'A': 11,
+                    'B': 6,
+                    'C': 99,
+                    'D': 1,
+                    'E': 7,
+                    'G': 0,
 
-              }
+                }
 
-              return H_dist[n]
+                return H_dist[n]
 
-#Describe your graph here
-      Graph_nodes = {
-          'A': [('B', 2), ('E', 3)],
-          'B': [('C', 1),('G', 9)],
-          'C': None,
-          'E': [('D', 6)],
-          'D': [('G', 1)],
+      #Describe your graph here
+        Graph_nodes = {
+            'A': [('B', 2), ('E', 3)],
+            'B': [('C', 1),('G', 9)],
+            'C': None,
+            'E': [('D', 6)],
+            'D': [('G', 1)],
 
-      }
-      aStarAlgo('A', 'G')
+        }
+        aStarAlgo('A', 'G')
       @end
 
 
@@ -339,15 +339,15 @@
              we know there was an overestimate
              Because h(n) is seemingly worse than an already seen path, and in that case it wont even bother looking at that path, talk about it being big brain, cant even look for shortest path without help, STUPID HMPH
 
-       ******* what happens if its not admissable
+       ******* what happens if its not admissible
               *You die*
 
               1. You miss paths you could of went to
               2. Kinda replicate what greedy does, which is not what this algo should do
 
-            If on the other hand it is admissible, then we can say its >= of what we already have, in that case thats good, we want that, because that means we wont miss any paths, when something is not admisslbe, it would mean tht we have missed multiple paths, the lowest given path is a given for a fact if it is admissable,
+               If on the other hand it is admissible, then we can say its >= of what we already have, in that case thats good, we want that, because that means we wont miss any paths, when something is not admissible, it would mean that we have missed multiple paths, the lowest given path is a given for a fact if it is admissible,
    **** Consistent
-        A heuristic function is consistent if the estimate of a given heuristic function turns out to be equal to, or less than the distance between the goal (n) and a neighbour, and the cost calculated to reach that neighbour.
+        */A heuristic function is consistent if the estimate of a given heuristic function turns out to be equal to, or less than the distance between the goal (n) and a neighbour, and the cost calculated to reach that neighbour./*
 
         The efficiency of an A* algorithm highly depends on the quality of its heuristic function. Wonder why this algorithm is preferred and used in many software systems? There is no single facet of AI where A*algorithm has not found its application. From search optimization to games, robotics and machine learning, A* algorithm is an inevitable part of a smart program.
 
@@ -411,7 +411,7 @@
 
   *** A* Properties {With loop}
    **** Complete
-        Yes, this is teh same with or without loop.
+        Yes, this is the same with or without loop.
    **** Optimal
         Yes but the good thing about this is that you dont need admissibility but you need to have consitency
         if H is not consistent, then it Fails
