@@ -16,12 +16,14 @@
 * Chapter 1 : Introduction  {Lecture_1}
 
  ** Why do we need search
+    @code comment
       A     B
       ┌─────┐
       ├┬─┐  │
       ││ │  │
       └┴─┴──┘C
     D E  F
+    @end
 
     - Consider each letter a node and a path
     - Each path has some sort of weighiting that allows us to go through and caculate the following items

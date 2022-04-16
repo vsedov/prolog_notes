@@ -1,0 +1,73 @@
+@document.meta
+  title: extended_uniform_notes
+  description:
+  authors: viv
+  categories:
+  created: 2022-04-16
+  version: 0.0.11
+@end
+
+* Notes from my understanding
+** Types of Uniform  search
+   ~ BFS
+   ~ DFS
+   ~ Depth limited Search
+   ~ IDLS
+   ~ Uniform Cost Search
+   ___
+   /Main Searches that I know of by heart I think/
+
+*** BFS
+    It is a ongoing algorithm, such that Your maximum depth factor with respect to your branch would be both your big O for space and time complexity
+    @math
+    $$ O(b^{m}) $$
+    @end
+    this would be the same for both space and time complexity. }
+    It is a complete algorithm, but not optimal with respect to the goal, if the goal is at the very end of the  tree it would have to go through each and every state to find it, which ofcourse does not make it optimal, 
+
+    BFS is only optimal if and only if when every node / arc that is linking each node is of the same size, sthen we can state this algorithm to be optimal 
+
+*** DFS
+    With a depth first search we have a minimal ammount of what we have to search, we would say that this algorithm is optimal under the prtence that we know that it is finite and there are no loop checking otherwise its not really optimal is it. 
+
+    Big o with respect to the time is B top the power s where s is the most or shallowst goal state tht we would have to go, at some given point
+    Issue is that we have to check both left hand side and right hand side for the goals . 
+
+    But the good thing is that our goal state would have to be within respect of our data right, so in that being said we would work in linear time when trying to search for data, at each point we can retreive the search process of everything.
+
+    Linear space, exponentiol time 
+
+** Depth limited
+   Based on the fact once again with respect to that we do not have loops and that we can  work over that factor, then yes this would be fine if i remembver correctly, it is complete when you have a finite space as =are other algorhtms
+
+   To aovid the inifite depth rpoblem a we can use a l which is our limit of our values that we have to s3earch, it kinda goes through each level, but only to a given limit
+   Big o B pow l 
+   Space is BL  again this wouldbe a limited space time complexity 
+
+** Iterative depth deepening search
+   Iterative depth deepenidng search is complete under the condetion that you have a finite factoro 
+
+   It is also known to be fast as fuck, with respect to our b and d value, we can say it is  optimal under the pretence that we know tha the step cost would be a constant, in most cause this would be the case
+
+
+   BFS, iterativ edeepening and breadth first search once again are all optimal under th condtion that everything would cost the same when you are ging down the tree
+
+   Uniform searhc is the biggest speed mf in the entire group, because it jnust becks the lowerst point in which you can go, so long as the points are not less than zero which would mess everything up, and that you have a finite space without loops
+   The big o would depent on our Minimal Cost value, and our E which is th ecost to the point of our goal state that we want to go 
+
+   Uniform search absed our selves when we do not know what everything might be and hence would have to work
+   around that factor.
+
+    
+
+
+* Main factors to take away from this
+  Iterative deepening search only uses linear space and not much more time than other uniformed search algorithm
+  Most case we have to check for loops, otherwise this would become rather bad towork with . 
+
+  I gues the thing to note when doing a recursive call, or when we are going through a loop, is to check how things are supposed to be done, when we have to make a recursive call in some sense . 
+
+  we have to have a recursive definition of how a loop would be done in the later stages of a given rpoblem 
+
+
+

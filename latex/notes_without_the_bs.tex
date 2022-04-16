@@ -41,10 +41,13 @@
 \newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{,--,#3}}
 \theoremstyle{mytheoremstyle}
 \newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+
 \theoremstyle{mytheoremstyle}
 \newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
 \theoremstyle{myproblemstyle}
 \newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,7 +60,8 @@
 
 
 \title{
-	Propositional_logic
+	AI Notes
+
 }
 \author{
 	Viv Sedov --- \texttt{viv.sedov@hotmail.com}
@@ -989,10 +993,78 @@ So you can say something like this
 	      \textit{You wake up in the morning and you head downstairs in the kitchen theres a plate on the table and a bowl with a little milk left in, you can then say by assumption that your housemake was awoke before you and already had their breakfast}
 
 \end{itemize}
+\subsection{Terminology}
+\begin{enumerate}
+	\item \begin{definition}[Fluents]
+		      Where the Truth varies over a period of time, think of them as a boolean state variable,
+		      Like when a person x lies, but sometimes they can state the truth, it would follow that logic
 
+		      we can also call this :
+		      \textit{Temporal Propositional statements}
+	      \end{definition}
+	\item \begin{definition}[Time instances and time periods]
+		      In short, year month day, or what happend on that date, we state to be time instances
+		      for example
+		      Last year my university decided to do in person exams to F every CS student over this allows us to give an initiation of our time  which leads into what occoured
+	      \end{definition}
+\end{enumerate}
+
+We generate new fluences when a state is changed, for example in the image above, when you have your start state, b [c,[a]] in case you see that every variable there is in flux, whihch would imply that we would have to move c from a, and then move b to a etc ... to get to our goal state
 
 \subsection{Frame problem}
+The frame problem is about finding a great way to handle non change .
+\begin{itemize}
+	\item Peristence or Intertia - the assumption that the facts are not affect by its actions - such that they would hold the same truth value after the action, as they had before hadn
+
+	\item The root of the problem lies in the fact of what the domain would represent
+
+	\item  For smaller domains, with just a small number of fluents, and action types, we can just write it out properly.
+\end{itemize}
+To most AI researchers, the frame problem is the challenge of representing the effects of action in logic without having to represent explicitly a large number of intuitively obvious non-effects
+
+types of problems
+\begin{enumerate}
+	\item Qualification problem - exhuastivly specifying preconditions of an action
+	\item Computational fram to verify what was inferred
+
+	\item Ramification problem - problem of exhastively specifying the effects of an action - think of chess
+
+
+\end{enumerate}
+TODO: Write more about Frame problem, as im not 100 \% sure how this works
+
 \subsection{Situational Calculus}
+The situation calculus is a logic formalism designed for representing and reasoning about dynamical domains. It was first introduced by John McCarthy in 1963. The main version of the situational calculus that is presented in this article is based on that introduced by Ray Reiter in 1991. Wikipedia
+\textit{Domain - tend to be in first order logic :}\\
+\begin{itemize}
+	\item Fluents bassicly the item you are trying to change
+	\item Actions the function you are pushing on those fluents
+	\item Situations like an instance of the current state
+\end{itemize}
+
+\begin{align}
+	\includegraphics[width=200px]{../img/2022-03-27-00-44-10.png}
+\end{align}
+\begin{align}
+	\includegraphics[width=200px]{../img/2022-03-27-00-46-27.png}
+\end{align}
+
+\begin{itemize}
+	\item Remover and append operatiions within a fleucen
+	\item Representation of actions as it stands does not check whether it is possible for a block to be moved from one place to another $\implies$ They dont check if something has been moved
+	\item How can you improve cause and effect
+\end{itemize}
+\textit{Situation Calculus is trying to deal with the reasoning of the present }
+
+We can use situational calculus to represent the current condition of a state.
+\subsubsection{Situational Calc state Representation}
+Situational Calc is defined through states
+
+if you look at the image above we have multiple situations, from s1 to s3, with different fluents and actions that have been made upon some given variable
+\begin{align}
+	\includegraphics[width=200px]{../img/2022-03-27-02-05-12.png}
+\end{align}
+
 \subsubsection{Language}
 \subsubsection{Axioms}
 \subsubsection{Examples}
