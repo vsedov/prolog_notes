@@ -17,6 +17,7 @@
 \usepackage{pgfplots}
 \usepackage{bm}
 \usepackage{listings}
+\usepackage{hyperref}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Other Settings
@@ -1481,7 +1482,8 @@ So with supervised learning we have these tasks of inference: \textit{What data 
 	\item Some Idea of what we are looking for
 \end{itemize}
 
-\subsubsubsubsection{How does Inductive Learning work}
+
+\subsubsubsection{How does Inductive Learning work}
 
 \begin{itemize}
 	\item Inductive learning is the basis for Choosing the best hypothesis, i.e the best data that we can work with
@@ -1492,6 +1494,69 @@ So with supervised learning we have these tasks of inference: \textit{What data 
 		      \item if our G(consist value h) is within our hypothesis than we say our Learning problem is realisable
 	      \end{itemize}
 \end{itemize}
+
+\begin{definition}[Ockham Razer ]
+	Prefer the simplest hypothesis, we can say it follows a reasonable policy, or work with, simplest value
+\end{definition}
+
+
+\subsection{Decision Trees}
+\begin{definition}[Decision Trees]
+	A Decision Tree is a tree, that provides the following attributes
+	\begin{itemize}
+		\item Attributes based classification : meaning that for each value within your tree base, you have these attributes or objects that you base it upon, a decision tree is like  a massive if elif else statement in some sense that you are always working with.
+		\item For the time we can consider this as boolean values that you can work with
+		      \begin{math}
+			      \mathbf{T}  \mathbf{F}
+		      \end{math}
+	\end{itemize}
+\end{definition}
+\subsubsection{Hypothesis Space}
+\begin{itemize}
+	\item How many distinct decision trees with n boolean attributes
+	      \begin{math}
+		      2^{2^{n}}
+	      \end{math}
+	\item How many purely conjuctive hypotheses are there in this
+	      \begin{math}
+		      hungrry \land \neg Rain
+	      \end{math}
+	      In this case you have \( 3^{n} \)  distinct conductive forms
+\end{itemize}
+\begin{definition}[Entropy]
+	A basic qunatity associated to a random variable and interpreted as average level of some information that you work with
+
+	Entropy is the measurement of disorder or impurities in the information processed in machine learning. It determines how a decision tree chooses to split data.
+
+	We can understand the term entropy with any simple example: flipping a coin. When we flip a coin, then there can be two outcomes. However, it is difficult to conclude what would be the exact outcome while flipping a coin because there is no direct relation between flipping a coin and its outcomes. There is a 50 percent  probability of both outcomes; then, in such scenarios, entropy would be high. This is the essence of entropy in machine learning.
+
+	- you have god notes on this, use that for the entropy sutff
+\end{definition}
+
+Link to understanding this :\url{https://www.javatpoint.com/entropy-in-machine-learning}
+The goal is to have the resulting decision tree as small as
+possible (Occam’s Razor)
+\item – The main decision in the algorithm is the selection of the next
+attribute to condition on.
+\item  We want attributes that split the examples to sets that are
+relatively pure in one label; this way we are closer to a leaf
+node.
+\item – The most popular heuristics is based on information gain, originated
+with the ID3 system of Quinlan.
+
+\begin{math}
+	-p_+ \log (p_+) - p_- \log (p_-)
+\end{math}
+\begin{itemize}
+	\item \( p_+ \) is proportion of postive numbers
+	\item \( P_- \) Is proprotion of negative examples in S
+\end{itemize}
+Overall we can say this
+
+when \( p_i \) is the fracxtion of the examples
+\begin{math}
+	-\sum_{n=i} p_i \log (p_i)
+\end{math}
 
 
 \end{document}
