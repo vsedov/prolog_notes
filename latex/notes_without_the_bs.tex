@@ -1558,5 +1558,47 @@ when \( p_i \) is the fracxtion of the examples
 	-\sum_{n=i} p_i \log (p_i)
 \end{math}
 
+\subsection{Building a Tree}
+When you work through a tree, its just all in disjunctive normal form
+\subsubsection{Entailment Constraints}
+\begin{align}
+	\includegraphics[width=300px]{../img/entailment.png}
+\end{align}
+\begin{align}
+	\includegraphics[width=300px]{../img/Pure_Learning.png}
+\end{align}
 
+what this image above state sis that, most cases the prior knowledge is not really used, but so recursively we can call that information, and update our hypothesis.
+
+
+What can you deduce from this
+
+the aim of inductive learning in general is to find a hypothesis that classifies the examples well and generlizes well to the new eexamples, shwon in that image, we do this recursivly with the new data that was learnt.
+
+\section{Inductive Logic programming}
+Inductive logic programming (ILP) is a subfield of ML for learning from examples E and suitably encoded human “background knowledge” B, using logic programs to represent both inputs E,B and the output model h
+
+Induction is reasoning from the specific to the general. For example, consider the following dataset on kinship that is similar to what we have considered in the earlier chapters.
+
+\begin{lstlisting}
+parent(a,b)	parent(a,c)	parent(d,b)
+father(a,b)	father(a,c)	mother(d,b)
+male(a)	female(c)	female(d)
+\end{lstlisting}
+
+Given the above dataset, we can use inductive reasoning to infer the following rules (or view definitions):
+\begin{lstlisting}
+father(X,Y) :- parent(X,Y) & male(X)
+mother(X,Y) :- parent(X,Y) & female(X)
+\end{lstlisting}
+In inductive logic programming, given a dataset, a set of starting view definitions, and a target predicate, we can infer the view definition of the target predicate. In the example above, we were given a dataset, no starting view definitions, and we inferred the view definition of father and mother. In the context of the inductive logic programming, the dataset is also referred to as a set of positive examples. Some inductive reasoning algorithms also take a set of negative examples. If negative examples are not provided, they can be computed as the set of ground atoms in the Herbrand base that are not present in the dataset. Set of positive and negative examples taken together is also known as training data.
+
+\item First Order Inductive Learner (FOIL).
+
+\subsection{conclusion}
+Inductive logic programming bears similarity to data mining where we are interested in looking for patterns hidden in the data. Inductive logic programming provides us a framework in which any background knowledge can be taken into account in the process of learning.
+
+Inductive logic programming differs from the statistical approaches to machine learning in that it does not depend on the availability of a large number of examples. As the knowledge learned by inductive logic programming is in the form of rules, it is more directly available for human examination and understanding.
+
+There have been some applications of inductive logic programming in biology for learning rules for protein folding, and in natural language processing for learning information extraction rules. Considerable more research is needed to explore the full potential of inductive logic programming for practical applications.
 \end{document}
