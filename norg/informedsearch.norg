@@ -84,7 +84,7 @@
     2. Unlike g(n) it depends on the state node n ;
 
     3. Provides information on top of the problem description so it informs the search, in this case you are constantly updating your search algorithm to find the most optimal solution
-      -> This prediction comes in handy when trying to define some value
+    -> This prediction comes in handy when trying to define some value
       - Estimated information - will normally be provided as additinal information to a given solution
 
       - Sasy you are trying to go from location A to location B :- Think of what information you have at the time, and

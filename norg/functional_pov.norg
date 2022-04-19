@@ -1,0 +1,124 @@
+# @document.meta
+  title: functional_pov
+  description:
+  authors: viv
+  categories:
+  created: 2022-04-17
+  version: 0.0.11
+@end
+
+* general tree search
+  @code
+  function tree_search(problem, frontier_list):
+
+    if frontier_list is empty then return
+
+    fetch_and_remove_node from the fringe
+    test the node with our goal state
+
+    If Goal_Test(problem, State(node)) return True
+
+    fringe <- insert_all(expand(node, problem), fringe)
+  @end
+
+  in English we can say the following, maybe you can try to remember this :
+
+
+  tree search
+  Frontier list -> insert - make node from the initial state with respect to the problem
+
+  then within the loop we would state that :
+    remove ndoe from the frontiner list and exapand it, we would have to do a goal test to see if it is valid or not
+
+  if gaol test based on problem, state node and then you would return the node, else you want to insert l/ expand every node within the problem
+
+  Now with respect to the expansion, that strongly depends on how things would get expanded,we can state that the expansion series would be based on the actions of each state, we when we go down a level we would increase our depth, and our past cost as well, that is based on where we are going .
+
+* Depth limited search
+
+  with this you are doing a depth limited search, where you have a recursive depth limited search on it self,, that will allow us to call the values
+
+  ]the recurtsive dls, is a massive one,
+
+  so we have to ghceck the program ./ goal state
+
+  then we have to cehck the depth of the node
+
+  then we have to expan dht enode, and ht eproblem and then do recursive dls on the problem t, we have thi cutoff limit to get the answers that we are looking for.
+
+
+* What is an evaluation function
+  An evaluation function is known as our f(n), this is a cost estimate that is used when trying to find the most optimal path to a goal,  it is bsed on the type of search that we are working of with .
+
+  @math
+  f(n) is the evaluation function
+  f(n) = h(n) ⟹  Greedy search
+  f(n) = h(n) + g(n) ⟹  A* Search
+  @end
+
+  Now the thing to note here is, what the values do, this is known as the evaluation function, that you want to be working with .
+
+
+| $Rule of thumb$
+  Always go with iterative deepening search, when you have a large data space and you do not know what data you are working with next
+  | _
+
+Why do we need an evaluation : it is a basis for us to go by, as it gives a cost estimate to work with, when you expand a node, we can eestimate how much that node would be worth with respect to our goal, we have this evaluation function because we are using an external data to combine with what we have right now.
+
+Another point is that with the given data we can state that the cost function allows us to decipher what search to do next i.e on a more simple term, lets take the following:
+
+If the cost from A to B has to examples, a cost functino, would allow us to decipher what actually could be better or not compared to having  no evaluation function, and going of the wing with the data that we have .
+
+Most cases we say that the data that is given is a work of with previous values.
+
+
+Best first search, is an instance of the tree algorithm:
+the main difference is that it has loop checking, it checks if the value that we poped would also be within our goal state
+
+
+So evaluation fucntion with best search has loop checking, it is an estimate or an optimal path to a goal, with the least estimate  path, it is a desirable point to get to.
+
+Most cases we state that an evaluation fucntion is something that we desire to work with .
+
+Anotehr thing to note is that there are different type of evaluation functions that imply they cost estimate of a value
+
+With that being saoid, we can stat ethat the cost estimate is something that we work off, from each point within our dataset
+
+
+Best search : tree search with loop checking
+--- It also has an evaluation function: evaluate the cost estimate, it tries to find the most optimal goal to a given point.  Thist cost estimate is the thing that the best first search would work with . trying to find the right path to any given goal space.
+
+
+If h_n is an overestimate then if the algirthm reaches the goal node by some other path we have proved that it was an overestimate, and so that the actual distance was lower ideally we want to maek sure that we underetimate everythign such that it will be faster / easier to predict where to go .
+
+
+Another thing to note is that if h_n is an underestimate then if the algorthm reaches the goal node by some path with distance d and the actual distance via n is les than d then it is guaranteed that f(n) will also be less than d so the algorthm will continue to look at n, and find a pather that would or possibly could be shorter than that of D.
+
+
+
+A Stronger condition than admissibility is called consistency -> when something is Monotonic :
+  - A heuristic is consistent / monotnic if every node n and ever succesor N'  of n generated by action a the
+    estimate cost of eaching the goal from n is not graeter than the step cost of getting  to n',
+
+
+A heuristic is consistent when
+@math
+h(n) <= c(n,a,n') + h(n')
+@end
+
+
+@code comment
+
+
+
+          h(n')
+     ┌──────────┐
+     │         ┌┘
+c(n) │        ┌┘
+     │       ┌┘
+     │      ┌┘  h(n)
+     └──────┘
+@end
+
+* Notes from [Website](https://allfamousbirthday.com/faqs/when-is-a-heuristic-consistent/)
+  A heurist is admissible if it never overestimates the true cost o to get to the nearest goal , a heuristic is consistent if when going from neighboring nodes a to b , the herusitc difference ./ step cost never over estimates the actuall step cost.

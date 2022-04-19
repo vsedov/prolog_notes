@@ -16,6 +16,7 @@
 \usepackage{psfrag}
 \usepackage{pgfplots}
 \usepackage{bm}
+\usepackage{listings}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Other Settings
@@ -806,6 +807,45 @@ We have this big kb and we have to go through each one to represent it. it is im
 \section{First Order Logic}
 Note : Just use implication over and
 when you have
+\begin{definition}
+	Constant : variables : functions
+	\begin{displaymath}
+		Knows(x,arithmatic)
+	\end{displaymath}
+	^^ this is Atomic formula
+	\begin{displaymath}
+		Student(x) \implies  knows(x,arithmetic)
+	\end{displaymath}
+	^^ Connective, which is applies to a formula,
+	Student knows arithmetic
+
+	\begin{displaymath}
+		\forall x Student(x) \implies Knows(x, arithmetic)
+	\end{displaymath}
+	All students know arithmetic
+
+
+
+\end{definition}
+\textbf{\textit{Overall a great way of dealing with this, is actually making a graph, to  convert the sentence into a graph like form, where you have different operations, and then check how they evaluate each other , in a sense this is a way how you convert propositional logic into first order logic.}}
+
+\begin{definition}[Model in first order logic]
+	A model \textit{w} in first order logic maps constant sysmbols to objects, similar to how connected graphs are all linked together
+
+	\begin{math}
+		w(alice) = \omega _1 , w(bob) = \omega _2, w(arithmetic) = \omega _3
+	\end{math}
+
+	\textit{Predicate symbols, to tuples of those objects}
+	\begin{math}
+		w(knows) = {(\omega _1, \omega _3), (\omega _2,\omega _3), \ldots }
+	\end{math}
+
+
+
+
+
+\end{definition}
 \begin{math}
 	\forall x \implies Y
 \end{math}
@@ -861,6 +901,25 @@ The order between all given Quantifiers are not the same and can be swapped betw
 	\item \( \forall x \exists y  \) is \textit{Not} the same as \( \forall y \exists x \;\not\!\!\!\implies \forall x \exists y\)
 	\item \( \forall x \exists y Loves(x,y)\) Every x loves some y so \textit{Everyone in the world is loved by atleast one person }
 	\item \( \exists x \forall y Loves(x,y) \)Some x loves every Y is not the same as every x loves some y this is \textit{There exist a person who loves everyone in the world} the reason for this is because when you have two \( \forall A \forall  B \) this is a pair, that you can sort through
+\end{itemize}
+
+\begin{itemize}
+	\item Universal Quantifiers:
+	      \begin{math}
+		      \forall x p(x) \iff p(a) \land p(b) \land \\
+		      \exists x P(x) \iff p(a) \lor p(b) \lor \\
+	      \end{math}
+	\item properties
+	      \begin{math}
+		      \neg \forall x P(x) \iff \exists x \neg P(x)\\
+		      \text{Demorgans law with or applies within logic}
+	      \end{math}
+	\item Usefull to convert natural language sentences to  first order Sentences :
+	      \begin{itemize}
+		      \item Every student knows arithmetic
+		      \item We can use \( \forall  \) \( \forall x student(x) \implies knows(x, arithmetic) \) But if you use and, then you are saying, something else, or you are implying something else.
+	      \end{itemize}
+
 \end{itemize}
 
 \newpage
@@ -975,6 +1034,206 @@ So you can say something like this
 
 \end{itemize}
 
+\subsection{Examples}
+There is some course that every student has taken
+\begin{math}
+	\exists y Course(y) \land [\forall x Student(x) \implies Takes(x,y)]\\
+\end{math}
+Remember exist contains and, and then for all have a implies
+
+\\
+How about \\
+
+Every even integer greater than 2 is the sum of two primes
+\begin{math}
+	\forall x even(x) \land greater(x,2) \implies  \exists y \exists z Same(x,sum(z,y)) \land prime(y) \land(prime(z))
+\end{math}
+Sometimes you have two primes, you can state that you are using two prims and they are EE values
+
+If a student takes a course and the course covers a concept then the student knows that concept
+\begin{itemize}
+	\item if => universal quantification means you have a bunch of them
+\end{itemize}
+
+\subsection{First order logic proofs}
+All human lectures are happy
+\begin{math}
+	\forall x (Lecture(x) \land Human(x) \implies  Happy(x))
+\end{math}
+\begin{itemize}
+	\item clauses are a disjunctive form of literals that hae to be converted in most cases
+	\item A definite clause is a clause where everything is negative but one
+	\item A definite clause tends to be when you have not(..... and  .... and ....) or x
+	      Then you can use implication to show that exists for the values that you are working with .
+\end{itemize}
+
+Susan bought everything that tony bought
+\begin{math}
+	(\forall x Bought(Tony, x) \implies  Bought(Suzan,x))
+\end{math}
+
+
+\subsubsection{Inferences in First Order Logic (proofs)}
+
+How do you prove through your kB:
+
+\begin{definition}[Subsitution]
+	First order logic contains unification and Substitution, this is due to the fact that this logic principle contains Variables, similar to how Prolog would work
+	\begin{math}
+		\delta  = {\frac{x}{John}}
+	\end{math}
+	Given a sentence S and a substitution 𝚫
+	\begin{math}
+		\\
+		S = King(x) \\
+		\delta = {{\frac{x}{John}}}\\
+		S\delta  = King(John)
+	\end{math}
+\end{definition}
+
+\begin{definition}[Universal instance]
+	Every instance that we make when we unify some value, to let a given value poses over another in some sense
+	Unification is the process of making a substitution, and this is done by unifying the two values .
+	They use each other.
+
+	\begin{math}
+		\frac{\forall x \alpha }{\alpha 0}
+	\end{math}
+	For any variable v and ground term g if 0 is the subsitution of v/g then we can say the about
+
+	Here you replacing values, v through g, so you are allowed to replace variables, think of how python lets you change the variable name
+\end{definition}
+
+In this example, what you are doing is replacing x, as you are replacing x with john, richard etc, if you know something about all possible vs, then you can use one
+\begin{definition}[ground term ]
+	A ground term is a term that contains no variables
+
+	\begin{displaymath}
+		\forall x (King(a) \land Greedy(x) \implies  Evil(x))\\
+		\text{yields}\\
+		\forall x(king(John) \land Greedy(John) \implies  Evil(John))
+	\end{displaymath}
+	Ground terms are easy to work with.
+
+\end{definition}
+
+\begin{definition}[Existential Instantiation]
+	For any sentence \( \alpha   \)  and \( v \) and constant K that does not need to apear anywhere but the KB, then we can say the following
+
+	\begin{align}
+		\includegraphics[width=200px]{../img/2022-04-18-22-58-10.png}
+	\end{align}
+
+	C1 needs to be brand new and make sure that, it does not appear anywhere within the state, because we know that it would have to be on the head of the king, pretty much .
+
+\end{definition}
+
+\begin{itemize}
+	\item If you have universal instantiation , then \textit{We can instantiate if we have an value from the qunatified formula - so we can just replace x with some name as a ground term }
+	\item If you have universal Instantiation , then \textit{We can say, we can replace the quantifiable Value with  a new Name, so we can just get rid of it and give it a big Capital Boi to name it, shown in the image above}
+\end{itemize}
+\subsubsection{Unification}
+How do you replace variables, Just look at the prolog notes i guess, as the principles would be the same
+
+\begin{align}
+	\includegraphics[width=200px]{../img/2022-04-18-23-09-26.png}
+\end{align}
+
+\begin{itemize}
+	\item Say you know that you are trying to find two people, here we can replace John , x with x = Jane
+	      Its a unification, where you replace x with jane, and then both formulas would become the same.
+	\item For the second case, X needs to become Oj and Y would have to become John when you are  replacing values
+\end{itemize}
+\textit{Where tf did you get Likes from }
+
+\begin{definition}[General Unifier]
+	These are the unifiers that do not have any or add any constraints, when you want an ai system towards the best answers, and quickly, so you want the answer to be as simple and quickly as possible.
+
+	So we want our unifiers to be as simple as possible
+\end{definition}
+
+\subsubsection{Unification Algo}
+Given any two formulas \( \alpha  \beta  \)  there is a very fast way of unifying things together
+
+\begin{math}
+	UNIFY(\alpha  , \beta ) = 0 \iff \alpha 0 = \beta 0
+\end{math}
+Which checks whether alpha and betra can be unified, with the the least or general unifier within our db
+for example if you have\\
+\begin{math}
+	p(x,y,f(z)) \\
+	p(f(y), A, x) \\
+\end{math}
+we can unify the following
+
+\begin{math}
+	\frac{x}{f(a)} \\
+	\frac{y}{A} \\
+	\frac{z}{A}\\
+\end{math}
+\begin{align}
+	\includegraphics[width=200px]{../img/2022-04-19-00-15-23.png}
+\end{align}
+
+\begin{itemize}
+	\item Unification is a "pattern matching" procedure that takes two atomic sentences, called literals, as input, and returns "failure" if they do not match and a substitution list, Theta, if they do match. That is, unify(p,q) = Theta means subst(Theta, p) = subst(Theta, q) for two atomic sentences p and q.
+	\item Theta is called the most general unifier (mgu)
+	\item All variables in the given two literals are implicitly universally quantified
+	\item To make literals match, replace (universally-quantified) variables by terms
+\end{itemize}
+\\
+\begin{lstlisting}
+procedure unify(p, q, theta)
+  Scan p and q left-to-right and find the first corresponding
+     terms where p and q "disagree"  ; where p and q not equal
+  If there is no disagreement, return theta  ; success
+  Let r and s be the terms in p and q, respectively,
+     where disagreement first occurs
+  If variable(r) then
+     theta = union(theta, {r/s})
+     unify(subst(theta, p), subst(theta, q), theta)
+  else if variable(s) then
+     theta = union(theta, {s/r})
+     unify(subst(theta, p), subst(theta, q), theta)
+  else return "failure"
+end
+\end{lstlisting}
+
+\subsubsection{Forward Chaining Proof }
+We can use forward chaining to prove that this factor holds
+
+\begin{itemize}
+	\item Sound and complete fore first order definite clauses
+	\item may not terminate in general if \( \alpha   \) is not entailed
+	\item You need entailment with definite clauses
+	\item \textit{DataLog} = First Order Logic definite Clauses + no functions
+	      They are an iterative functional value that you work of with .
+\end{itemize}
+
+
+\subsection{First Order Logic End Summery}
+Say we have the following sentence
+\begin{math}
+	\text{Which Rich person Does Admam admire ? }\\
+	admire(Admin, Bill) \\
+	admire(Admin, Colin) \\
+	admire(x,y) \leftarrow lectures(x), lectures(y) \\
+	lecturer(Adam) \\
+	lectureer(Dav) \\
+	lectureer(Eric) \\
+	rich(colin)\\
+	rich(Eric) \\
+	rich(Adam) \leftarrow rich(colin)\\
+\end{math}
+If we do backtracking we can do the following to find our solution
+\begin{align}
+	\includegraphics[width=300px]{../img/2022-04-19-15-30-43.png}
+\end{align}
+This is a nicer way of showing a proof to a given kb
+
+
+
+
 \section{Temporal Reasoning}
 
 \subsection{Classification of Ai temporal reasoning problems}
@@ -1065,9 +1324,174 @@ if you look at the image above we have multiple situations, from s1 to s3, with 
 	\includegraphics[width=200px]{../img/2022-03-27-02-05-12.png}
 \end{align}
 
+If you initial state was S, and then you have this functional operation, \( a_1 \) then you would evaluate to a function that would be \( do(a_1,S) \) , and this is a recursive functino or a recursive call that is made.
+These Do values here are new states, are when an action state, where they would be a new situation after previous situation, in which that would lead to another state.
+
 \subsubsection{Language}
+Situational Calc, is a bassis that relies of the following language
+\begin{itemize}
+	\item Constant and variables : \textit{These are for fluents and actions } they are usally sorted .
+	\item names For situations, basic functional values, where we have some function that would denote some action that is being done within that given time
+
+	\item \textit{Holds(F,S)} Represents a fluent F is true in the situation S \\
+	      What this means is when ever something i shold, it means it will contain to be true within that state .
+	      \begin{align}
+		      \includegraphics[width=200px]{../img/2022-04-18-21-12-51.png}
+	      \end{align}
+	      Main difference is that representation of fluents using hold is that we base an action, on the new solution ? ? ?? wtf is this ?
+
+	      \\
+	      Move(current_state || What is it on || Where does it go )
+
+	      Here you would use a hold, to check if something is true or not, we use hold to show a fluent .
+	      Which would mean that b on top of f is true in s0, both are valid way of  showing fluents
+
+	\item \textbf{\textit{Main Idea }} \\
+
+	      \begin{itemize}
+		      \item What holes true after an action occurs
+		      \item What remains the same after an action occurs
+		      \item What changes after an action
+		      \item What were the pre conditions for that action to take place - and was it derived from previous actions.
+	      \end{itemize}
+
+\end{itemize}
+\begin{definition}[Language of situational calculus]
+	Difference between situation and state \\
+	\begin{itemize}
+		\item A state is the set of fluents that are always true
+		\item A Situation provides a history of transitions (actions) from initial state
+		      So think of the recursive idea, where you held all the previous states in one go, its similar to that principle .
+	\end{itemize}
+\end{definition}
 \subsubsection{Axioms}
-\subsubsection{Examples}
-\subsection{Summary}
+Axioms are statements that are always true, and are used to define the language of the situation calculus.
+They are preconditions that are specified when working with an action
+
+\begin{enumerate}
+	\item Preconditions effect - Axioms
+	      A fluent p holds in the situation do (ᵅ, s) so long as P and execution of alpha in S makes P true, and the precondition of A if any are all true for S.
+	      So in some sense, when we have a function, we have to make sure that it would hold true, on execution  such that it makes sense
+	      \begin{align}
+		      \includegraphics[width=200px]{../img/2022-04-18-21-31-06.png}
+	      \end{align}
+
+	      So in this image it looks confusing and your right, its way too much crap for what its worth
+	      So in short, when we say x is on z after we move y to z
+	      \\
+	      \\
+	      action(move y to z) means (x is on z )
+	      \\
+	      \\
+	      So when we have on(x,z) we have to show, what actions were made, so move(x,y,z) right, the arror denotes the preconditions, to the movement of the value.
+	      Such that x had to be on y so we can move from y,
+	      and then we have to clear x and clear z i.e we have to check that nothing was on top of x and y
+
+	      These are knowns as preconditions being created.
+
+
+	\item Frame Axioms
+	      Indicating A fluent P holds in situation, where S is not stop, i.a you have a continuous axiom of representation.
+
+	      Basically When something does not change, and your action state is doing something else, and not effecting your current clear or on value that you are working with.
+\end{enumerate}
+\newpage
+
+\section{Inductive Learning}
+Inductive Learning is pretty much, decision trees, high level, symbolic approach to how properties would work .
+\textbf{\textit{Legit if else statements : think of disjunctive normal form }}
+
+
+\begin{definition}[Learning]
+	Learn is defined through the following items that allow us to measure how much an item can learn, a good approach to think about is, maybe how much IQ a person has ?
+	\begin{enumerate}
+		\item E = Experience
+		\item T = Task
+		\item P = Performance
+	\end{enumerate}
+
+	The learning is measured such that Our experience is based with respect to our task and that how well have we learning, such that we base that off our performance.
+\end{definition}
+\subsection{Why is learning Key to this ? }
+\begin{itemize}
+	\item System is based on agents within the real world, all be it sensors, or agents that we have
+	\item some cases we have to have decision making to improve our performance
+	\item For environments that may not be fully known, some cases we have to work within respect to what the agent would learn
+	      \begin{itemize}
+		      \item Acting on its own
+		            \teim making its own rules through pattern matching
+		      \item Handle data from our agent and much more
+	      \end{itemize}
+\end{itemize}
+
+As always learning, is a basis that allow us to increase our performance over time, learning improves performance, because it can learn through its conditions, goals and other items within our system or our KB
+\subsection{Forms of Learning}
+There are different forms of learning
+\subsubsection{Unsupervised Learning}
+\begin{definition}[Unsupervised Learning]
+	Learn through patterns, within our data set. : There is no external application in which you can go out your way to help and say oh you can do this . \\
+	You have zero feedback and you learn with respect to the input data, over a period of time.
+	\\
+	Examples :
+	\\
+	\begin{itemize}
+		\item Self Learning Cars; trying to figure out what is good traffic or not.
+	\end{itemize}
+
+\end{definition}
+\subsubsection{Reinforcement Learning}
+\begin{definition}[Reinforcement Learning]
+	this is where you learn from series of rewards and punishments, think of a monkey, whenthey learn, or when a baby learns, there are expierences that they have to go through to get to where they are now, and there is a similar pricniple to what happens here
+
+	you have the Benefits and the downsides, which need to be in balance but only learn through telling the agent this is what oyu can do, this is what you cannot do:
+
+	think of it like, when you are trying to teach someone to drive somewhere.
+
+\end{definition}
+\subsubsection{Supervised Learning}
+\begin{definition}[Supervised Learning]
+	Agent observes some examples, you give it a training set and it learns from that training set: good example is when you messed around with neural networks to lean about this basis right, recall when you messed around with the mnist dataset, you had to give it a network and self learning properties but first you had to give it a data set for it to work with right.
+	exact same principle here
+
+\end{definition}
+
+\subsubsubsection{Inductive Learning}
+\begin{definition}[Inductive Learning]
+	Inductive learning is like human learning based on past experiences
+	\begin{itemize}
+		\item the closest way of an ai agent to learn is to do so from observations or giving it the information or telling it to do something with respect to its previous data
+		\item Agent will use learning of a target function to predict the values of an attribute, in which you can approve or not, or have certain qualifiers, where you can say the following thing about the given time or information you have you induce information: i.e inductive
+		      \begin{itemize}
+			      \item Approve
+			      \item not approved
+			      \item high risk
+			      \item low risk
+		      \end{itemize}
+
+	\end{itemize}
+	\textbf{\textit{Induction:}} Is a way to show how we can compare to things to gather, and say here are two sets of information, deduce some information from it, so we can work with new information, you are creating new info in some sense.
+
+	This is a variant of supervised learning
+\end{definition}
+So with supervised learning we have these tasks of inference: \textit{What data do we have to learn from }
+
+\begin{itemize}
+	\item Training data
+	\item test set
+	\item Some Idea of what we are looking for
+\end{itemize}
+
+\subsubsubsubsection{How does Inductive Learning work}
+
+\begin{itemize}
+	\item Inductive learning is the basis for Choosing the best hypothesis, i.e the best data that we can work with
+	\item our \textit{h } Would have to be consistent, or that we know that there are no issues with our data set
+	\item \textbf{\textit{Learning problem realisable}} If \( G(h) \in H  \)  then we can say the following
+	      \begin{itemize}
+		      \item H = is a set of all valid functions that we can work with, i.e hypothesis or the expressive value that we got
+		      \item if our G(consist value h) is within our hypothesis than we say our Learning problem is realisable
+	      \end{itemize}
+\end{itemize}
+
 
 \end{document}

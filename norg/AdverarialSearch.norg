@@ -244,3 +244,21 @@
  5. Optimal decision depends on teh second dude
 
  Games are to Ai as grand prix is to automobile design, but hey we are getting there
+
+
+* Extra notes
+  - Majority of the time we can speed things up, i mean there is a thing about resource limiting our data.
+  - What does that actually mean ?
+**** Resource Limiting
+     Most cases information can be cost limited, what that means is that even with alpha beta pruning which is optimal in most cases
+     - /CutOff-Test/ ⟹  Terminal-Test
+         We can use CutOff tests instead of terminal tests, in the sense that we can focus on a limit amount of moves instead of going through all of them
+     - Use evaluation of utility
+       Evaluation functions that estimate the desirability over utility which is less of a prediction more of a fact that you are working towards.
+
+**** Memorise this I guess, as im not sure what this means.
+     - Digression of the values does not matter, we do not need to work towards anything valid
+     - Behaviour is preserved under any monotonic transformation of the evaluation function
+     - only the order matters
+      So when we think of order and disgression we can relate this to the chess example above, the order of how a move is played so long as it is a monotonic transformation
+     - Main pointer is *order*

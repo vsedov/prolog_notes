@@ -97,3 +97,5 @@
 
    - */Another thing to note is our heuristic value should be Consistent, meaning that it is monotonic, what
    that means is if it is monotonic, it means we have good heuristic properties./*
+
+   So how is the speed for this determined ?
